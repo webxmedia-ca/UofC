@@ -1,0 +1,13 @@
+version: "3"
+services:
+  node:
+    image: "ucautomation"
+    ports:
+    - "5900:5900"
+    environment:
+    - NODE_ENV=production
+    volumes:
+    - ./:/ucautomation
+    expose:
+    - "8081"
+#    command: "npm run uclaw:test1 -- --env=tst --browserStack=true"

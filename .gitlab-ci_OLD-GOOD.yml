@@ -1,0 +1,61 @@
+#image: docker
+image: git.caas.ucalgary.ca:4567/valeriu.jecov/ucautomation:latest
+
+before_script:
+  - echo "this is the before_script in action"
+  - npm install
+#  - ls -al $PWD
+  - echo
+
+stages:
+- run-automated-tests
+
+uofcautomation:
+  stage: run-automated-tests
+  image: git.caas.ucalgary.ca:4567/valeriu.jecov/ucautomation:latest
+
+  script:
+#  - install docker-compose       #  - docker-compose up
+#  - echo "expected docker-compose to be up"
+  - echo "run npm tests"
+#  - node -v        #  - npm -v
+#  - echo "list all files and folders in the default location"      #  - ls
+#  - echo "navigate to tests folder and list all the items inside the folder"
+#  - cd tests     #  - ls     #  - cd ..
+#  - echo "navigate to node_modules folder and list all the items inside the folder"
+#  - cd node_modules      #  - ls
+
+  - echo "run test 1 ------------------------------------------------------------------------------------------"
+#  - echo "npm run "${testName}" -- --env="${env}" --browserStack=true"
+  - npm run "${testName}" -- --env="${env}" --browserStack=true
+  - echo
+
+  - echo "run test 2 ------------------------------------------------------------------------------------------"
+#  - echo "${npm_run_test}"
+  - ${npm_run_test}
+  - echo
+
+  - echo "run test 3 ------------------------------------------------------------------------------------------"
+#  - echo "${npm_run_test_with_vars}"
+  - ${npm_run_test_with_vars}
+  - echo
+
+  artifacts:
+    reports:
+      junit: rspec.xml
+
+  # not sure what the one below does - is it needed?!
+  environment:
+    name: tst
+    url: https://law-tst.ucalgary.ca
+
+  when: manual
+
+  allow_failure: false
+
+  #test will run only in master branch
+  only:
+  - master
+
+  after_script:
+  - echo "tests run done"

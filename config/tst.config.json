@@ -1,0 +1,42 @@
+{
+  "baseUrl": "https://staging-ucws.pantheonsite.io",
+  "support": {
+    "credentials": {
+      "username": "testUser1",
+      "password": "Nala@2017"
+    }
+  },
+  "siteadmin": {
+    "credentials": {
+      "username": "siteadmin",
+      "password": "test"
+    }
+  },
+  "contentadmin": {
+    "credentials": {
+      "username": "",
+      "password": ""
+    }
+  },
+  "contenteditor": {
+    "credentials": {
+      "username": "",
+      "password": ""
+    }
+  },
+  "readonly": {
+    "credentials": {
+      "username": "",
+      "password": ""
+    }
+  },
+  "browserStack": {
+    "user": "valeriujecov1",
+    "key": "c8EHLyzv9zWTJ2zGRedY",
+    "debug": true,
+    "console": "verbose",
+    "networkLogs": true,
+    "local": false,
+    "localIdentifier": "AutomationTest -- this is used only when local = true -- do not use local settings yet!"
+  }
+}

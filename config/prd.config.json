@@ -1,0 +1,26 @@
+{
+  "baseUrl": "https://UofC.aer.ca/UofC",
+  "gisBaseExternalUrl": "https://extmapviewer.aer.ca",
+  "gisBasePublicUrl": "https://extmapviewer.aer.ca",
+  "gisBaseInternalUrl": "https://intmapviewer.aer.ca",
+  "tableauBaseExternalUrl": "https://www2.aer.ca/t/Production",
+  "tableauBaseInternalUrl": "https://tableau.aer.energyregulator.ab.ca/t",
+  "internal": {
+    "credentials": {
+      "username": "CBCBCB",
+      "password": "Nala@2017"
+    }
+  },
+  "external": {
+    "credentials": {
+      "username": "AERValidator",
+      "password": "**AERValidator"
+    }
+  },
+  "public": {
+    "credentials": {
+      "username": "",
+      "password": ""
+    }
+  }
+}

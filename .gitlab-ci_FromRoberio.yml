@@ -1,0 +1,112 @@
+# Environment variables passed in by the ws/drupal8 group (https://git.caas.ucalgary.ca/groups/ws/drupal8/-/settings/ci_cd)
+# - COMPOSER_VENDOR_NAME - Defaults to "ucalgary"
+# - GITLAB_ACCESS_TOKEN - A GitLab Access Token owned by website@ucalgary.ca
+
+# Environment variables passed in by the ws/drupal8/docker/local-development repo (https://git.caas.ucalgary.ca/groups/ws/drupal8/docker/local-development/-/settings/ci_cd)
+# KUBECTL_CONFIG_BASE64 - A base64 encoded copy of a k8s config file
+# KUBECTL_NAMESPACE - The namespace for Kubernetes
+
+stages:
+- build
+- deploy
+- container_scanning
+
+build_all:
+  stage: build
+  when: manual
+  image: docker:stable
+  services:
+  - docker:dind
+
+  variables:
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_DRIVER: overlay2
+
+  before_script:
+  - docker login $CI_REGISTRY --username gitlab-ci-token --password $CI_BUILD_TOKEN
+
+  script:
+  # build order: production image, latest image, dev image
+  - echo ${gitlab_access_token}
+  - docker build --no-cache --file=./config/Dockerfile.production --build-arg=GITLAB_ACCESS_TOKEN="${gitlab_access_token}" --tag=git.caas.ucalgary.ca:4567/ws/drupal8/docker/local-development:drupal8_${CI_COMMIT_SHA} .
+  - docker build --no-cache --file=./config/Dockerfile.production --build-arg=GITLAB_ACCESS_TOKEN="${gitlab_access_token}" --tag=git.caas.ucalgary.ca:4567/ws/drupal8/docker/local-development:latest .
+  - docker build --no-cache --file=./config/Dockerfile.development --build-arg=GITLAB_ACCESS_TOKEN="${gitlab_access_token}" --tag=git.caas.ucalgary.ca:4567/ws/drupal8/docker/local-development:development .
+  # push to proper registries
+  - docker push $CI_REGISTRY/ws/drupal8/docker/local-development:drupal8_${CI_COMMIT_SHA}
+  - docker push $CI_REGISTRY/ws/drupal8/docker/local-development:latest
+  - docker push $CI_REGISTRY/ws/drupal8/docker/local-development:development
+
+deploy_pre_prod:
+  stage: deploy
+  image: roffe/kubectl
+  script:
+  # Decode the k8s config and set the namespace
+  - export KUBECONFIG=$CI_PROJECT_DIR/kubeconfig
+  - echo ${KUBECTL_CONFIG_BASE64_PREPROD} | base64 -d > ${KUBECONFIG}
+  - kubectl config set-context $(kubectl config current-context) --namespace=${KUBECTL_NAMESPACE}
+  # Deploy all to dev (eventually all site images will reside here)
+  - kubectl set image deployment.v1.apps/uclaw-drupal uclaw-drupal=git.caas.ucalgary.ca:4567/ws/drupal8/docker/local-development:drupal8_${CI_COMMIT_SHA} --record
+  - kubectl set image deployment.v1.apps/ucexplore-drupal ucexplore-drupal=git.caas.ucalgary.ca:4567/ws/drupal8/docker/local-development:drupal8_${CI_COMMIT_SHA} --record
+  when: manual
+  only:
+  - master
+
+drushtester:
+  stage: deploy
+  image: roffe/kubectl
+  script:
+  # Decode the k8s config and set the namespace
+  - export KUBECONFIG=$CI_PROJECT_DIR/kubeconfig
+  - echo ${KUBECTL_CONFIG_BASE64_PREPROD} | base64 -d > ${KUBECONFIG}
+  - kubectl config set-context $(kubectl config current-context) --namespace=${KUBECTL_NAMESPACE}
+  # Deploy all to dev (eventually all site images will reside here)
+  # - kubectl set image deployment.v1.apps/uclaw-drupal uclaw-drupal=git.caas.ucalgary.ca:4567/ws/drupal8/docker/local-development:drupal8_${CI_COMMIT_SHA} --record
+  - kubectl get pods | grep uclaw-drupal | awk '{print $1}' | head -1 | xargs -I {} kubectl exec {} -- /bin/bash -c "cd /var/www/html/app; drush -y cr; drush -y ucwsmm; drush fr $( drush pm:list --format=csv --status=enabled --package=UCWS --field=name --type=module | tr '\n\r' ',' | sed 's/,,/,/g' | sed 's/,$//') --yes; drush -y updatedb; drush -y cr"
+  when: manual
+  only:
+  - master
+
+deploy_prod:
+  stage: deploy
+  image: roffe/kubectl
+  script:
+  # Decode the k8s config and set the namespace
+  - export KUBECONFIG=$CI_PROJECT_DIR/kubeconfig
+  - echo ${KUBECTL_CONFIG_BASE64_PROD} | base64 -d > ${KUBECONFIG}
+  - kubectl config set-context $(kubectl config current-context) --namespace=${KUBECTL_NAMESPACE}
+  # Deploy all to prod (eventually all site images will reside here)
+  - kubectl set image deployment.v1.apps/uclaw-drupal uclaw-drupal=git.caas.ucalgary.ca:4567/ws/drupal8/docker/local-development:drupal8_${CI_COMMIT_SHA} --record
+  - kubectl get pods | grep uclaw-drupal | awk '{print $1}' | head -1 | xargs -o -I {} kubectl exec -ti {} -- /bin/bash -c "cd /var/www/html/app; drush -y cr; drush -y ucwsmm; drush fr $( drush pm:list --format=csv --status=enabled --package=UCWS --field=name --type=module | tr '\n\r' ',' | sed 's/,,/,/g' | sed 's/,$//') --yes; drush -y updatedb; drush -y cr"
+  when: manual
+  only:
+  - master
+
+container_scanning:
+  stage: container_scanning
+  image: docker:stable
+  variables:
+    DOCKER_DRIVER: overlay2
+  stage: deploy
+  image: roffe/kubectl
+  script:
+  # Decode the k8s config and set the namespace
+  - export KUBECONFIG=$CI_PROJECT_DIR/kubeconfig
+  - echo ${KUBECTL_CONFIG_BASE64_PREPROD} | base64 -d > ${KUBECONFIG}
+  - kubectl config set-context $(kubectl config current-context) --namespace=${KUBECTL_NAMESPACE}
+  # Deploy all to dev (eventually all site images will reside here)
+  - kubectl set image deployment.v1.apps/uclaw-drupal uclaw-drupal=git.caas.ucalgary.ca:4567/ws/drupal8/docker/local-development:drupal8_${CI_COMMIT_SHA} --record
+  - kubectl exec $(kc get pods | grep uclaw-drupal | awk '{print $1}' | head -1) bash -- drush -y cr
+  when: manual
+  only:
+  - master
+  - mv clair-scanner_linux_amd64 clair-scanner
+  - chmod +x clair-scanner
+  - touch clair-whitelist.yml
+  - while( ! wget -q -O /dev/null http://docker:6060/v1/namespaces ) ; do sleep 1 ; done
+  - retries=0
+  - echo "Waiting for clair daemon to start"
+  - while( ! wget -T 10 -q -O /dev/null http://docker:6060/v1/namespaces ) ; do sleep 1 ; echo -n "." ; if [ $retries -eq 10 ] ; then echo " Timeout, aborting." ; exit 1 ; fi ; retries=$(($retries+1)) ; done
+  - ./clair-scanner -c http://docker:6060 --ip $(hostname -i) -r gl-container-scanning-report.json -l clair.log -w clair-whitelist.yml git.caas.ucalgary.ca:4567/ws/drupal8/docker/local-development:uc-law || true
+  artifacts:
+    paths: [gl-container-scanning-report.json]
+  when: manual

@@ -1,0 +1,26 @@
+{
+  "baseUrl": "http://devdcmappv1.aer.energyregulator.ab.ca:81/UofC",
+  "gisBaseExternalUrl": "http://extmapviewer-dev.aer.ca",
+  "gisBasePublicUrl": "http://extmapviewer-dev.aer.ca",
+  "gisBaseInternalUrl": "http://intmapviewer-dev.aer.ca",
+  "tableauBaseExternalUrl": "https://bi-uat.aer.ca",
+  "tableauBaseInternalUrl": "https://tableau.aer.energyregulator.ab.ca",
+  "internal": {
+    "credentials": {
+      "username": "CBCBCB",
+      "password": "Nala@2017"
+    }
+  },
+  "external": {
+    "credentials": {
+      "username": "0039CMSA",
+      "password": "Nala2017"
+    }
+  },
+  "public": {
+    "credentials": {
+      "username": "",
+      "password": ""
+    }
+  }
+}

@@ -1,0 +1,134 @@
+##### THIS IS AN EXAMPLE FROM THE DEV TEAM - NOT USED FOR QA #####
+
+FROM thecodingmachine/php:7.2-v1-apache-node8
+
+USER root
+WORKDIR /var/www/html/app
+
+# Dockerfile Arguments
+ARG GITLAB_ACCESS_TOKEN
+
+# Dependency versions
+ENV DRUSH_LAUNCHER_VERSION=0.6.0
+ENV IMAGEMAGICK_VERSION=3.4.3
+
+# Apache Configuration
+ENV APACHE_DOCUMENT_ROOT=app/web
+ENV APACHE_RUN_GROUP=www-data
+ENV APACHE_RUN_USER=www-data
+
+# Composer Configuration
+ENV COMPOSER_ALLOW_SUPERUSER=1
+
+# PHP Extensions
+ENV PHP_EXTENSION_APCU=0
+ENV PHP_EXTENSION_EXIF=1
+ENV PHP_EXTENSION_GD=1
+ENV PHP_EXTENSION_GETTEXT=1
+ENV PHP_EXTENSION_MYSQLI=0
+ENV PHP_EXTENSION_PDO_MYSQL=1
+ENV PHP_EXTENSION_REDIS=0
+ENV PHP_EXTENSION_SOAP=0
+ENV PHP_EXTENSION_XDEBUG=0
+
+# PHP Configuration
+ENV PHP_INI_DATE__TIMEZONE=UTC
+ENV PHP_INI_DISPLAY_ERRORS=0
+ENV PHP_INI_DISPLAY_STARTUP_ERRORS=0
+ENV PHP_INI_ERROR_LOG=/dev/stderr
+ENV PHP_INI_ERROR_REPORTING=0
+ENV PHP_INI_EXPOSE_PHP=0
+ENV PHP_INI_IGNORE_REPEATED_ERRORS=1
+ENV PHP_INI_MAIL__ADD_X_HEADER=1
+ENV PHP_INI_MAX_EXECUTION_TIME=90
+ENV PHP_INI_MAX_INPUT_VARS=10000
+ENV PHP_INI_MEMORY_LIMIT=1G
+ENV PHP_INI_OPCACHE__ENABLE_CLI=1
+ENV PHP_INI_OPCACHE__FAST_SHUTDOWN=1
+ENV PHP_INI_OPCACHE__INTERNED_STRINGS_BUFFER=8
+ENV PHP_INI_OPCACHE__MAX_ACCELERATED_FILES=4000
+ENV PHP_INI_OPCACHE__MEMORY_CONSUMPTION=128
+ENV PHP_INI_OPCACHE__REVALIDATE_FREQ=60
+ENV PHP_INI_POST_MAX_SIZE=100M
+ENV PHP_INI_REALPATH_CACHE_SIZE=800K
+ENV PHP_INI_REALPATH_CACHE_TTL=86400
+ENV PHP_INI_UPLOAD_MAX_FILESIZE=100M
+ENV PHP_INI_XDEBUG__IDEKEY=PHPSTORM
+ENV PHP_INI_XDEBUG__MAX_NESTING_LEVEL=256
+ENV PHP_INI_XDEBUG__REMOTE_AUTOSTART=0
+ENV PHP_INI_XDEBUG__REMOTE_CONNECT_BACK=0
+ENV PHP_INI_XDEBUG__REMOTE_ENABLE=1
+ENV PHP_INI_XDEBUG__REMOTE_HOST=docker.for.mac.localhost
+ENV PHP_INI_XDEBUG__REMOTE_PORT=9000
+ENV PHP_INI_XDEBUG__SHOW_EXCEPTION_TRACE=0
+ENV PHP_INI_ZEND__ASSERTIONS=-1
+ENV TEMPLATE_PHP_INI=production
+
+# Drupal Configuration
+ENV SIMPLESAMLPHP_CONFIG_DIR=/var/www/html/app/web/modules/ucalgary/ucws_common/ucws_sso/config/simplesamlphp/config/
+
+# Update SSH Known Hosts
+RUN mkdir -p ~/.ssh && touch ~/.ssh/known_hosts && \
+    ssh-keyscan -t rsa -H git.caas.ucalgary.ca 2>&1 | tail -1 >> ~/.ssh/known_hosts
+
+# Install the dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+	curl \
+	git \
+	mysql-client \
+	pwgen \
+	unzip \
+	wget
+
+# Install ImageMagick
+RUN apt-get update && apt-get install -y --no-install-recommends libmagickwand-dev imagemagick && \
+  mkdir -p /usr/src/php/ext/imagick && \
+  curl --location https://pecl.php.net/get/imagick-${IMAGEMAGICK_VERSION}.tgz | tar zx --strip-components=1 -C /usr/src/php/ext/imagick && \
+  export CFLAGS="$PHP_CFLAGS" CPPFLAGS="$PHP_CPPFLAGS" LDFLAGS="$PHP_LDFLAGS" && \
+  docker-php-ext-install imagick
+
+# Install Drush Launcher
+RUN apt-get update && apt-get install -y --no-install-recommends wget && \
+    wget --quiet --output-document=/usr/local/bin/drush https://github.com/drush-ops/drush-launcher/releases/download/${DRUSH_LAUNCHER_VERSION}/drush.phar && \
+	  chmod +x /usr/local/bin/drush
+
+# Copy Drupal into the container
+COPY ./app /var/www/html/app
+COPY ./config/settings.php /var/www/html/app/web/sites/default/settings.php
+RUN mkdir -p /var/www/html/app/web/sites/default/files
+RUN chown -R ${APACHE_RUN_USER}:${APACHE_RUN_GROUP} /var/www/html/app/web/sites/default/files/
+
+# Configure Drupal
+RUN export DRUPAL_HASH_SALT=$( pwgen 64 1 ) && \
+  echo "\n\
+/**\n\
+ * Site specific settings\n\
+ */\n\
+\$settings['hash_salt'] = '${DRUPAL_HASH_SALT}';\n\
+" >> /var/www/html/app/web/sites/default/settings.php
+RUN cat /var/www/html/app/web/sites/default/settings.php
+
+# Install global Composer packages
+RUN composer global require hirak/prestissimo
+
+# Install the Drupal dependencies
+RUN git config --global url."https://".insteadOf git:// && \
+    composer self-update --stable --no-progress && \
+    composer config -g gitlab-token.git.caas.ucalgary.ca -- "$GITLAB_ACCESS_TOKEN" && \
+    composer config preferred-install dist && \
+    composer install && \
+    composer drupal-scaffold && \
+    composer install --optimize-autoloader && \
+    rm -rf /home/docker/.composer /root/.composer
+
+# Compile our CSS and JavaScript assets
+RUN npm install && \
+    ./node_modules/.bin/gulp deploy && \
+    rm -rf ./node_modules/ /root/.npm
+
+# Clean up
+RUN apt-get clean && rm -rf \
+  /tmp/* \
+  /usr/src/* \
+  /var/lib/apt/lists/* \
+  /var/tmp/*
