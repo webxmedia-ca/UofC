@@ -1,5 +1,5 @@
 VJ:
-- note that this folder contains a copy of the whole UofC automaion project - it is in synch with github (lotosotol account)
+- note that this folder contains a copy of the whole UofC automation project - it is in synch with github (lotosotol account)
 - in order to keep it up to date you need to copy the files from the "ucauomation" (the original project) folder into here
 - when above are good then push it to git
 
