@@ -2,3 +2,11 @@ VJ:
 - note that this folder contains a copy of the whole UofC automaion project - it is in synch with github (lotosotol account)
 - in order to keep it up to date you need to copy the files from the "ucauomation" (the original project) folder into here
 - when above are good then push it to git
+
+- TO RUN THE TESTS DO ONE OF NEXT WITHIN YOUR CMDER:
+:::: run tests locally (mainly for debugging purpose) ::::
+npm run uclaw:test1 -- --env=tst --browserStack=false
+npm run uclaw:test1 -- --env=tst --browserClient=chrome --browserStack=false
+
+:::: when running the test in browserStack run next command ::::
+npm run uclaw:test1 -- --env=tst --browserStack=true --browserStackArgs=Windows,7,Chrome,69.0,1024x768
