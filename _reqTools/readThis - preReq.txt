@@ -1,0 +1,3 @@
+In order to successfully run the tests you need next things configured (to be done only once):
+1. move/create a folder on your "C:/" drive named "ChromeDriver" & move the "chromedriver.exe" file into it (or just move the attached folder to "C:/"
+2. add the "C:\ChromeDriver" as a Path variable into the System Variables (not User variables)
