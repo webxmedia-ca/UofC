@@ -4,7 +4,7 @@
   "description": "ucalgary.ca automation tests",
   "homepage": "",
   "scripts": {
-    "uclaw:test1": "mocha --timeout=60000 --slow=15000 --reporter=spec tests/uclaw/test1/spec.js --role=siteadmin --failureFatal=1",
+    "uclaw:test1": "mocha --timeout=70000 --slow=5000 --reporter=spec tests/uclaw/test1/spec.js --role=siteadmin --failureFatal=1",
     "uclaw:test2": "mocha --timeout=10000 --slow=5000 --reporter=spec tests/uclaw/test2/spec.js --role=siteadmin --failureFatal=1"
   },
   "repository": {

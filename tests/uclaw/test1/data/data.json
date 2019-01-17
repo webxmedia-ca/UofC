@@ -5,9 +5,9 @@
     "menuSettingsValues": {
       "menuLinkTitle": "test menu",
       "menuDescription": "test menu description",
-      "menuParentItem": "-- Departments",
+      "menuParentItem": "-- Sections",
       "menuWeight": "5"
     },
-    "assignTeams": "Careers,Students"
+    "assignTeams": "CSM,Office - CHI"
   }
 }

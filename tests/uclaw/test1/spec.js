@@ -1,5 +1,5 @@
 /**
- * Created by valeriu.jecov on 10/18/2018.
+ * Created by valeriu.jecov on 18/10/2018.
  * NOTE: THIS TEST IS NOT YET DONE
  */
 
@@ -49,23 +49,25 @@ describe('user: ' + harness.getCommandLineArgs().role + ' / env - ' + harness.ge
 	
 	UcLaw.addNewBlock('2'
 	  , 'UCalgary'
-	  , 'details.UCalgary-blocks:nth-child(21) li:nth-child(1)'
-	  , 'details.UCalgary-blocks:nth-child(21)>ul'
+	  , 'details.UCalgary-blocks:nth-child(22) li:nth-child(1)'
+	  , 'details.UCalgary-blocks:nth-child(22)>ul'
 	  , 'Add Streaming Media'
 	  , 'details[id*=edit-settings-teams]'
-	  , 'LAW,Students'
+	  , 'CSM,Office - CHI'
 	  , '.layout.col1:not([class*=hero]) .streaming-media'
-	  , 'Close Status Message\nStatus message\nThe layout override has been saved.');
+	  , 'Close Status Message\nStatus message\nThe layout override has been saved.'
+	);
 	
-	UcLaw.editStreamingMediaBlock('test block heading' + Math.floor((Math.random() * 1000) + 1)
-	  , 'test block description' + Math.floor((Math.random() * 1000) + 1)
-	  , 'accessibility text' + Math.floor((Math.random() * 1000) + 1)
+	UcLaw.editStreamingMediaBlock('test block heading ' + Math.floor((Math.random() * 1000) + 1)
+	  , 'test block description ' + Math.floor((Math.random() * 1000) + 1)
+	  , 'accessibility text ' + Math.floor((Math.random() * 1000) + 1)
 	  , 'caption for media ' + Math.floor((Math.random() * 1000) + 1)
 	  , 'creator credit ' + Math.floor((Math.random() * 1000) + 1)
 	  , 'Youtube'
 	  , 'https://www.youtube.com/watch?v=jMgvnXq-s8o&list=PLGIDwNGRDzUAK78PuEgxsmDCGmym7romC'
 	  , null
-	  , false);
+	  , false
+	);
 	
 	// describe('just wait ...................................................................', () => {
 	//

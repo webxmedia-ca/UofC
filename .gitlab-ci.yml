@@ -23,9 +23,9 @@ test1:
   stage: run_automated_tests
   script:
   - echo "run test 1 ------------------------------------------------------------------------------------------"
-  - echo "npm run ${testName} -- --env=${env} --browserStack=true --browserStackArgs=${browserStackArgs}"
-#  - echo "npm run "${testName}" -- --env="${env}" --browserStack=true --browserStackArgs="${browserStackArgs}""
-  - npm run ${testName} -- --env=${env} --browserStack=true --browserStackArgs=${browserStackArgs}
+  - echo "npm run ${testName} -- --env=${env} --browserStack=true --browserStackArgs=${browserStackArgs1}"
+#  - echo "npm run "${testName}" -- --env="${env}" --browserStack=true --browserStackArgs="${browserStackArgs1}""
+  - npm run ${testName} -- --env=${env} --browserStack=true --browserStackArgs=${browserStackArgs1}
 #  - npm run "${testName}" -- --env="${env}" --browserStack=true  #this also works
   - echo
 
