@@ -1,9 +1,15 @@
 {
-  "baseUrl": "https://staging-ucws.pantheonsite.io",
+  "appsUrls": {
+    "ucLaw": "https://staging-uc-ucws-qa.pantheonsite.io",
+    "ucWeb": "",
+    "ucXplore": "",
+    "ucProjName": "",
+    "baseUrl": "https://staging-ucws.pantheonsite.io"
+  },
   "support": {
     "credentials": {
-      "username": "testUser1",
-      "password": "Nala@2017"
+      "username": "support",
+      "password": "test"
     }
   },
   "siteadmin": {
@@ -14,20 +20,14 @@
   },
   "contentadmin": {
     "credentials": {
-      "username": "",
-      "password": ""
+      "username": "contentadmin",
+      "password": "test"
     }
   },
-  "contenteditor": {
+  "contentauthor": {
     "credentials": {
-      "username": "",
-      "password": ""
-    }
-  },
-  "readonly": {
-    "credentials": {
-      "username": "",
-      "password": ""
+      "username": "contentauthor",
+      "password": "test"
     }
   },
   "browserStack": {

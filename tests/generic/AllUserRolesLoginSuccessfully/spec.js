@@ -10,10 +10,10 @@ const HarnessJson = require('../../../lib/harness-json');
 const UcLaw = require('../../../lib/UofCLawApp');
 // const expect = require('chai').expect;
 
-//temp - so I can use driver. actions in the test here
+//--------------------------------------- temp - so I can use driver. actions in the test here
 // UcLaw.init(harness.init, waitShort, waitLong);
-const driver = UcLaw.getAttrs().driver;
-//temp - so I can use driver. actions
+// const driver = UcLaw.getAttrs().driver;
+//-------------------------------------------------------- temp - so I can use driver. actions
 
 describe('appName: ' + harness.getCommandLineArgs().appName + ' (user: ' + harness.getCommandLineArgs().role +
   ') | env: ' + harness.getCommandLineArgs().env + ' | BrowserStack: ' + harness.getCommandLineArgs().browserStack, function () {

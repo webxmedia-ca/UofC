@@ -15,8 +15,8 @@ const UcLaw = require('../../../lib/UofCLawApp');
 const driver = UcLaw.getAttrs().driver;
 //temp - so I can use driver. actions
 
-describe('user: ' + harness.getCommandLineArgs().role + ' / env - ' + harness.getCommandLineArgs().env +
-  ' / browserstack - ' + harness.getCommandLineArgs().browserStack, function () {
+describe('appName: ' + harness.getCommandLineArgs().appName + ' (user: ' + harness.getCommandLineArgs().role +
+  ') | env: ' + harness.getCommandLineArgs().env + ' | BrowserStack: ' + harness.getCommandLineArgs().browserStack, function () {
 	let harnessObj = null;
 	
 	before(async () => {

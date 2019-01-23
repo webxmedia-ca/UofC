@@ -1,26 +1,42 @@
 {
-  "baseUrl": "https://UofC.aer.ca/UofC",
-  "gisBaseExternalUrl": "https://extmapviewer.aer.ca",
-  "gisBasePublicUrl": "https://extmapviewer.aer.ca",
-  "gisBaseInternalUrl": "https://intmapviewer.aer.ca",
-  "tableauBaseExternalUrl": "https://www2.aer.ca/t/Production",
-  "tableauBaseInternalUrl": "https://tableau.aer.energyregulator.ab.ca/t",
-  "internal": {
+  "appsUrls": {
+    "ucLaw": "https://live-uc-ucws-qa.pantheonsite.io",
+    "ucWeb": "",
+    "ucXplore": "",
+    "ucProjName": "",
+    "baseUrl": "https://live-uc-ucws-qa.pantheonsite.io"
+  },
+  "support": {
     "credentials": {
-      "username": "CBCBCB",
-      "password": "Nala@2017"
+      "username": "support",
+      "password": "test"
     }
   },
-  "external": {
+  "siteadmin": {
     "credentials": {
-      "username": "AERValidator",
-      "password": "**AERValidator"
+      "username": "siteadmin",
+      "password": "test"
     }
   },
-  "public": {
+  "contentadmin": {
     "credentials": {
-      "username": "",
-      "password": ""
+      "username": "contentadmin",
+      "password": "test"
     }
+  },
+  "contentauthor": {
+    "credentials": {
+      "username": "contentauthor",
+      "password": "test"
+    }
+  },
+  "browserStack": {
+    "user": "valeriujecov1",
+    "key": "c8EHLyzv9zWTJ2zGRedY",
+    "debug": true,
+    "console": "verbose",
+    "networkLogs": true,
+    "local": false,
+    "localIdentifier": "AutomationTest -- this is used only when local = true -- do not use local settings yet!"
   }
 }

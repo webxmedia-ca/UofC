@@ -8,8 +8,10 @@ const harness = require('../../../lib/harness');
 const UcLaw = require('../../../lib/UofC-base');
 const expect = require('chai').expect;
 
-describe(harness.getCommandLineArgs().appType + ':' + harness.getCommandLineArgs().appSubType +
-    ' - (' + harness.getCommandLineArgs().username + ' - ' + harness.getCommandLineArgs().env + ')', function () {
+// describe(harness.getCommandLineArgs().appType + ':' + harness.getCommandLineArgs().appSubType +
+//     ' - (' + harness.getCommandLineArgs().username + ' - ' + harness.getCommandLineArgs().env + ')', function () {
+describe('appName: ' + harness.getCommandLineArgs().appName + ' (user: ' + harness.getCommandLineArgs().role +
+  ') | env: ' + harness.getCommandLineArgs().env + ' | BrowserStack: ' + harness.getCommandLineArgs().browserStack, function () {
     let harnessObj = null;
 
     before(async () => {
