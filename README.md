@@ -1,6 +1,5 @@
 # Automated UofC Tests
-this repo defines the automated tests suites for UofC. The git url is: https://git.caas.ucalgary.ca/valeriu.jecov/ucautomation.git
-
+this repo defines the automated tests suites for UofC. The git url is: ******
 
 # Dependencies
 #### Packages installations
