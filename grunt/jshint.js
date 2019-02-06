@@ -4,14 +4,16 @@
 
 module.exports = {
     all: [
-        // 'Gruntfile.js',
+        'Gruntfile.js',
         'lib/UofCApp-base.js',
-        // 'tests/**/*.js'
+        'tests/**/*.js'
     ],
     options: {
         globals: {
             jQuery: true,
+            console: true,
+            module: false,
             run: false
-        },
+        }
     }
-}
+};

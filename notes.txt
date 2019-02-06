@@ -3,10 +3,23 @@ VJ:
 - in order to keep it up to date you need to copy the files from the "ucauomation" (the original project) folder into here
 - when above are good then push it to git
 
+CMDs - definition:
+--browserClient=chrome:		not required (defaults to chrome if not declared)
+--browserStack=false:		not required (defaults to *.config.js file's settings if not declared)
+
 - TO RUN THE TESTS DO ONE OF NEXT WITHIN YOUR CMDER:
 :::: run tests locally (mainly for debugging purpose) ::::
-npm run uclaw:test1 -- --env=tst --browserStack=false
-npm run uclaw:test1 -- --env=tst --browserClient=chrome --browserStack=false
+npm run uclaw:test1 -- --env=tst --appName=ucLaw --browserStack=false
+npm run uclaw:test1 -- --env=tst --appName=ucLaw --browserClient=chrome --browserStack=false
 
-:::: when running the test in browserStack run next command ::::
-npm run uclaw:test1 -- --env=tst --browserStack=true --browserStackArgs=Windows,7,Chrome,69.0,1024x768
+:::: when running the test in browserStack run one of next commands ::::
+npm run uclaw:test1 -- --env=tst --appName=ucLaw --browserStack=true
+npm run uclaw:test1 -- --env=tst --appName=ucLaw --browserStack=true --browserStackArgs=Windows,7,Chrome,69.0,1024x768
+
+
+
+:::::::::::::::::::::::: THE TEST ALREADY WRITTEN ::::::::::::::::::::::::
+npm run generic:AllUserRolesLoginLogoutSuccessfully -- --env=tst --appName=ucLaw --browserStack=true
+npm run generic:ValidateInternalMenuAsSiteAdmin -- --env=tst --appName=ucLaw --browserStack=true
+npm run generic:ValidateInternalMenuAsContentAdmin -- --env=tst --appName=ucLaw --browserStack=true
+npm run generic:ValidateInternalMenuAsContentEditor -- --env=tst --appName=ucLaw --browserStack=tru

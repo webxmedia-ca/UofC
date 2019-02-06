@@ -4,12 +4,13 @@
   "description": "ucalgary.ca automation tests",
   "homepage": "",
   "scripts": {
-    "generic:AllUserRolesLoginSuccessfully": "mocha --timeout=70000 --slow=5000 --reporter=spec tests/generic/AllUserRolesLoginSuccessfully/spec.js --role=siteadmin --failureFatal=1",
-
+    "generic:AllUserRolesLoginLogoutSuccessfully": "mocha --timeout=75000 --slow=5000 --reporter=spec tests/generic/AllUserRolesLoginLogoutSuccessfully/spec.js --role=siteadmin --failureFatal=1",
+    "generic:ValidateInternalMenuAsSiteAdmin": "mocha --timeout=60000 --slow=5000 --reporter=spec tests/generic/ValidateInternalMenuAsSiteAdmin/spec.js --role=siteadmin --failureFatal=1",
+    "generic:ValidateInternalMenuAsContentAdmin": "mocha --timeout=60000 --slow=5000 --reporter=spec tests/generic/ValidateInternalMenuAsContentAdmin/spec.js --role=contentadmin --failureFatal=1",
+    "generic:ValidateInternalMenuAsContentEditor": "mocha --timeout=60000 --slow=5000 --reporter=spec tests/generic/ValidateInternalMenuAsContentEditor/spec.js --role=contenteditor --failureFatal=1",
     "uclaw:test1": "mocha --timeout=70000 --slow=5000 --reporter=spec tests/uclaw/test1/spec.js --role=siteadmin --failureFatal=1",
-    "uclaw:test2": "mocha --timeout=10000 --slow=5000 --reporter=spec tests/uclaw/test2/spec.js --role=siteadmin --failureFatal=1",
-
-    "ucweb:test3": "mocha --timeout=10000 --slow=5000 --reporter=spec tests/ucweb/test3/spec.js --role=siteadmin --failureFatal=1"
+    "uclaw:test2": "mocha --timeout=30000 --slow=5000 --reporter=spec tests/uclaw/test2/spec.js --role=siteadmin --failureFatal=1",
+    "ucweb:test3": "mocha --timeout=30000 --slow=5000 --reporter=spec tests/ucweb/test3/spec.js --role=siteadmin --failureFatal=1"
   },
   "repository": {
     "type": "git",
@@ -37,7 +38,7 @@
     "jira-client": "^6.4.1",
     "jshint": "^2.9.6",
     "jsonfile": "^3.0.1",
-    "load-grunt-config": "^0.19.2",
+    "load-grunt-config": "^1.0.1",
     "load-grunt-tasks": "^4.0.0",
     "mocha": "^5.2.0",
     "moment": "^2.22.2",

@@ -49,11 +49,11 @@ describe('appName: ' + harness.getCommandLineArgs().appName + ' (user: ' + harne
 	
 	UcLaw.addNewBlock('2'
 	  , 'UCalgary'
-	  , 'details.UCalgary-blocks:nth-child(22) li:nth-child(1)'
-	  , 'details.UCalgary-blocks:nth-child(22)>ul'
+	  , 'details.UCalgary-blocks:nth-child(21) li:nth-child(1)'
+	  , 'details.UCalgary-blocks:nth-child(21)>ul'
 	  , 'Add Streaming Media'
 	  , 'details[id*=edit-settings-teams]'
-	  , 'CSM,Office - CHI'
+	  , 'Digital Experience,Web Services'
 	  , '.layout.col1:not([class*=hero]) .streaming-media'
 	  , 'Close Status Message\nStatus message\nThe layout override has been saved.'
 	);
@@ -67,10 +67,10 @@ describe('appName: ' + harness.getCommandLineArgs().appName + ' (user: ' + harne
 	  , 'https://www.youtube.com/watch?v=jMgvnXq-s8o&list=PLGIDwNGRDzUAK78PuEgxsmDCGmym7romC'
 	  , null
 	  , false
+	  , null
 	);
 	
 	// describe('just wait ...................................................................', () => {
-	//
 	// 	it('wait', async () => {
 	// 		console.log('wait');
 	// 	});

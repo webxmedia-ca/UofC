@@ -6,12 +6,6 @@
     "ucProjName": "",
     "baseUrl": "https://live-uc-ucws-qa.pantheonsite.io"
   },
-  "support": {
-    "credentials": {
-      "username": "support",
-      "password": "test"
-    }
-  },
   "siteadmin": {
     "credentials": {
       "username": "siteadmin",
@@ -24,9 +18,15 @@
       "password": "test"
     }
   },
-  "contentauthor": {
+  "contenteditor": {
     "credentials": {
-      "username": "contentauthor",
+      "username": "contenteditor",
+      "password": "test"
+    }
+  },
+  "support": {
+    "credentials": {
+      "username": "support",
       "password": "test"
     }
   },
