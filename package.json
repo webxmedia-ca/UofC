@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://git.caas.ucalgary.ca/valeriu.jecov/ucautomation.git"
+    "url": "https://git.caas.ucalgary.ca/ws/drupal8/qa/automation-testing.git"
   },
   "author": "Valeriu Jecov",
   "license": "MIT",
@@ -34,7 +34,7 @@
     "grunt-contrib-jshint": "^2.0.0",
     "grunt-notify": "^0.4.5",
     "grunt-sloc": "^0.7.1",
-    "iedriver-exe": "^3.6.0",
+    "iedriver": "^3.13.0",
     "jira-client": "^6.4.1",
     "jshint": "^2.9.6",
     "jsonfile": "^3.0.1",

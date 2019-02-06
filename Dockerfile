@@ -18,9 +18,6 @@ COPY package.json /ucautomation
 #the one below - not sure if needed !!!!!!
 LABEL license=MIT version=$VERSION authors=ValeriuJecov
 
-#RUN ["npm", "install"]
-RUN npm install
-
 #new stuff --------------------------------------------------------:
 #without this stuff, manually runnning the test won't work (from bash cmd)
 COPY .jshintrc /ucautomation
@@ -62,9 +59,10 @@ COPY lib lib/
 #####--------------------------------------------------------------------------------#####
 
 
-RUN mkdir -p reporters; mkdir -p screen-caps; RUN mkdir -p tests
+RUN mkdir -p reporters; mkdir -p screen-caps; mkdir -p tests;
 COPY reporters reporters/
 COPY screen-caps screen-caps/
 COPY tests tests/
 
 #RUN ["npm", "install"]
+#RUN npm install

@@ -1,7 +1,7 @@
 #################################################################################################################
 #image: docker
-image: git.caas.ucalgary.ca:4567/valeriu.jecov/ucautomation:latest
-
+#image: git.caas.ucalgary.ca:4567/valeriu.jecov/ucautomation:latest
+image: git.caas.ucalgary.ca:4567/ws/drupal8/qa/automation-testing:latest
 
 
 #################################################################################################################
@@ -41,8 +41,8 @@ autoRun_Group1:
 
     #  --- below there are more examples of running tests (with & without GitLab Variables):
     #  - ${npm_run_test}
-    #  - npm run uclaw:test1 -- --env=tst --appName=ucLaw --browserStack=true
-    #  - npm run ${testName} -- --env=tst --appName=ucLaw --browserStack=true --browserStackArgs=${browserStackArgs1}
+#    - npm run uclaw:test1 -- --env=tst --appName=ucLaw --browserStack=true
+#    - npm run ${testName} -- --env=tst --appName=ucLaw --browserStack=true --browserStackArgs=${browserStackArgs1}
     #  - npm run ${testName} -- --env=${env} --appName=ucLaw --browserStack=true  #this also works
     - echo
 

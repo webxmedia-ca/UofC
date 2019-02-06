@@ -1,7 +1,7 @@
 version: "3"
 services:
   node:
-    image: "ucautomation"
+    image: "git.caas.ucalgary.ca:4567/ws/drupal8/qa/automation-testing"
     ports:
     - "5900:5900"
     environment:
