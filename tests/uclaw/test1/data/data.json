@@ -5,9 +5,9 @@
     "menuSettingsValues": {
       "menuLinkTitle": "test menu",
       "menuDescription": "test menu description",
-      "menuParentItem": "-- Sections",
+      "menuParentItem": "-- Getting Started",
       "menuWeight": "5"
     },
-    "assignTeams": "CSM,Office - CHI"
+    "assignTeams": "Digital Experience,Web Services"
   }
 }

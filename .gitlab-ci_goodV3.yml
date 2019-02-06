@@ -2,24 +2,20 @@
 #image: docker
 image: git.caas.ucalgary.ca:4567/valeriu.jecov/ucautomation:latest
 
-
-
 #################################################################################################################
 before_script:
-  - echo "this is the before_script in action - will install frameworks' plugins"
-  - npm install      # temporarily disabled for testing (this should be installed when the image is built not every time when running a test)
+  - echo "this is the before_script in action"
+  - npm install
   #  - ls -al $PWD
-#  - echo "expect docker image to be up - tst env is ready for running the tests"
+  - echo "expect docker image to be up - tst env is ready for running the tests"
   - echo
-
-
 
 #################################################################################################################
 stages:
   #- build_automated_env
-  - automation_tests      #stage for all jobs including both manual and automated ones
-  - tests_run_automated   #stage for the automated jobs only
-  - tests_run_manual      #stage for the manual jobs only
+  - automation_tests
+  - tests_run_automated
+  - tests_run_manual
 
 #build_automated_env:
 #  stage: build_automated_env
@@ -29,11 +25,10 @@ stages:
 #  - echo "expected docker image to be up - tst env should be ready for tests"
 
 
-
 #################################################################################################################
 # running 2 groups of automated jobs as we have the ability to have 2 parallel runs within BrowserStack
 autoRun_Group1:
-  stage: tests_run_automated
+  stage: automation_tests
   script:
     - echo "automated test run -------------------------------------------------------------------------------------"
     #  - echo "npm run uclaw:test1 -- --env=tst --appName=ucLaw --browserStack=true"
@@ -52,23 +47,22 @@ autoRun_Group1:
   only:
     - master      # the test/job will run only in master branch
 
-#  artifacts:
-#    reports:
-#      junit: rspec.xml
+  artifacts:
+    reports:
+      junit: rspec.xml
   #      junit: ${testName}.xml
 
   environment:  # not sure what the one below does - is it needed?!
     name: ${env}
     url: https://law-tst.ucalgary.ca
 
+
 #################################################################################################################
 autoRun_Group2:
-  stage: tests_run_automated
+  stage: automation_tests
   script:
     - echo "automated test run -------------------------------------------------------------------------------------"
     - npm run generic:ValidateInternalMenuAsSiteAdmin -- --env=tst --appName=ucLaw --browserStack=true
-    - npm run generic:ValidateInternalMenuAsContentAdmin -- --env=tst --appName=ucLaw --browserStack=true
-    - npm run generic:ValidateInternalMenuAsContentEditor -- --env=tst --appName=ucLaw --browserStack=true
     - echo
 
   #  when: manual
@@ -77,23 +71,20 @@ autoRun_Group2:
   only:
     - master      # the test/job will run only in master branch
 
-#  artifacts:
-#    reports:
-#      junit: rspec.xml
+  artifacts:
+    reports:
+      junit: rspec.xml
 
-  environment:    # not sure what the one below does - is it needed?!
+  environment:  # not sure what the one below does - is it needed?!
     name: ${env}
     url: https://law-tst.ucalgary.ca
-
-
-
 
 
 #################################################################################################################
 # THE INTENTION OF THE BELOW JOBS / RUNS ARE FOR ALL THE AVAILABLE TESTS TO BE RUN MANUALLY IF / WHEN NEEDED
 #################################################################################################################
 AllUserRolesLoginLogoutSuccessfully:
-  stage: tests_run_manual
+  stage: automation_tests
   script:
     - echo "manual test run -------------------------------------------------------------------------------------"
     - npm run generic:AllUserRolesLoginLogoutSuccessfully -- --env=tst --appName=ucLaw --browserStack=true
@@ -105,13 +96,14 @@ AllUserRolesLoginLogoutSuccessfully:
   only:
     - master      # the test/job will run only in master branch
 
-  environment:    # not sure what the one below does - is it needed?!
+  environment:  # not sure what the one below does - is it needed?!
     name: ${env}
     url: https://law-tst.ucalgary.ca
 
+
 #################################################################################################################
 ValidateInternalMenuAsSiteAdmin:
-  stage: tests_run_manual
+  stage: automation_tests
   script:
     - echo "manual test run -------------------------------------------------------------------------------------"
     - npm run generic:ValidateInternalMenuAsSiteAdmin -- --env=tst --appName=ucLaw --browserStack=true
@@ -123,51 +115,12 @@ ValidateInternalMenuAsSiteAdmin:
   only:
     - master      # the test/job will run only in master branch
 
-  environment:    # not sure what the one below does - is it needed?!
-    name: ${env}
-    url: https://law-tst.ucalgary.ca
-
-#################################################################################################################
-ValidateInternalMenuAsContentAdmin:
-  stage: tests_run_manual
-  script:
-    - echo "manual test run -------------------------------------------------------------------------------------"
-    - npm run generic:ValidateInternalMenuAsContentAdmin -- --env=tst --appName=ucLaw --browserStack=true
-    - echo
-
-  when: manual
-  allow_failure: false
-
-  only:
-    - master      # the test/job will run only in master branch
-
-  environment:    # not sure what the one below does - is it needed?!
-    name: ${env}
-    url: https://law-tst.ucalgary.ca
-
-#################################################################################################################
-ValidateInternalMenuAsContentEditor:
-  stage: tests_run_manual
-  script:
-    - echo "manual test run -------------------------------------------------------------------------------------"
-    - npm run generic:ValidateInternalMenuAsContentEditor -- --env=tst --appName=ucLaw --browserStack=true
-    - echo
-
-  when: manual
-  allow_failure: false
-
-  only:
-    - master      # the test/job will run only in master branch
-
-  environment:    # not sure what the one below does - is it needed?!
+  environment:  # not sure what the one below does - is it needed?!
     name: ${env}
     url: https://law-tst.ucalgary.ca
 
 
 
 #################################################################################################################
-
-
-
 after_script:
-  - echo "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ tests run done ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+  - echo "tests run done"
