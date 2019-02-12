@@ -13,13 +13,13 @@ ARG VERSION=1.0.0
 # Copy the application files
 RUN mkdir -p /ucautomation
 WORKDIR /ucautomation
-
 COPY package.json /ucautomation
+
 #RUN ["npm", "install"]
 #RUN npm install
 
 #the one below - not sure if needed !!!!!!
-LABEL license=MIT version=$VERSION authors=ValeriuJecov
+LABEL license=MIT version=$VERSION authors=ValeriuJecov Description="This image is used to do run automation testing" Vendor="Some Vendor"
 
 #new stuff --------------------------------------------------------:
 #without this stuff, manually runnning the tests won't work (from bash cmd)
