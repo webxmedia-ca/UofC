@@ -1,0 +1,13 @@
+{
+  "createBasicPage": {
+    "pageTitle": "automation test page",
+    "isPublished": false,
+    "menuSettingsValues": {
+      "menuLinkTitle": "test menu",
+      "menuDescription": "test menu description",
+      "menuParentItem": "-- Getting Started",
+      "menuWeight": "5"
+    },
+    "assignTeams": "Digital Experience,Web Services"
+  }
+}

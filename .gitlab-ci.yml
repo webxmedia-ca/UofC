@@ -100,7 +100,8 @@ AllUserRolesLoginLogoutSuccessfully:
     - echo
 
   when: manual
-  allow_failure: false
+#  allow_failure: false
+  allow_failure: true
 
   only:
     - master      # the test/job will run only in master branch
@@ -118,7 +119,8 @@ ValidateInternalMenuAsSiteAdmin:
     - echo
 
   when: manual
-  allow_failure: false
+#  allow_failure: false
+  allow_failure: true
 
   only:
     - master      # the test/job will run only in master branch
@@ -136,7 +138,8 @@ ValidateInternalMenuAsContentAdmin:
     - echo
 
   when: manual
-  allow_failure: false
+#  allow_failure: false
+  allow_failure: true
 
   only:
     - master      # the test/job will run only in master branch
@@ -154,7 +157,8 @@ ValidateInternalMenuAsContentEditor:
     - echo
 
   when: manual
-  allow_failure: false
+#  allow_failure: false
+  allow_failure: true
 
   only:
     - master      # the test/job will run only in master branch
