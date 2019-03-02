@@ -1,7 +1,7 @@
 /npm-debug.log
 /debug.log
 /.idea
-/.git
+/_.git_old
 /config/*.applications.json
 /node_modules/
 /results/*

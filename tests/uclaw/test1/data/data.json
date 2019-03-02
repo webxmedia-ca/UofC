@@ -3,11 +3,12 @@
     "pageTitle": "automation test page",
     "isPublished": false,
     "menuSettingsValues": {
-      "menuLinkTitle": "test menu",
+      "menuLinkTitle": "test menu title",
       "menuDescription": "test menu description",
-      "menuParentItem": "-- Getting Started",
+      "menuParentItem": "<Main navigation>",
       "menuWeight": "5"
     },
-    "assignTeams": "Digital Experience,Web Services"
+    "assignTeams": "CSM,Research Lung",
+    "verifyPage": true
   }
 }

@@ -1,13 +1,13 @@
 {
   "createBasicPage": {
-    "pageTitle": "automation test page",
-    "isPublished": false,
+    "pageTitle": "Page Title",
+    "isPublished": true,
     "menuSettingsValues": {
-      "menuLinkTitle": "test menu",
-      "menuDescription": "test menu description",
-      "menuParentItem": "-- Getting Started",
-      "menuWeight": "5"
+      "menuLinkTitle": "Menu Title",
+      "menuDescription": "Menu Description",
+      "menuParentItem": "<Main navigation>"
     },
-    "assignTeams": "Digital Experience,Web Services"
+    "assignTeams": "CSM",
+    "verifyPage": true
   }
 }

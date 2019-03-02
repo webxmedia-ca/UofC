@@ -7,7 +7,7 @@ const waitShort = 2000;
 const waitLong = 5000;
 const harness = require('../../../lib/harness');
 const HarnessJson = require('../../../lib/harness-json');
-const UcLaw = require('../../../lib/UofCLawApp');
+const UcLaw = require('../../../lib/UofCApps');
 // const expect = require('chai').expect;
 
 //temp - so I can use driver. actions in the test here

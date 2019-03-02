@@ -7,7 +7,7 @@
 const waitShort = 2000;
 const waitLong = 5000;
 const harness = require('../../../lib/harness');
-const UofC = require('../../../lib/UofCLawApp');
+const UofC = require('../../../lib/UofCApps');
 
 describe('appName: ' + harness.getCommandLineArgs().appName + ' (user: ' + harness.getCommandLineArgs().role +
   ') | env: ' + harness.getCommandLineArgs().env + ' | BrowserStack: ' + harness.getCommandLineArgs().browserStack, function () {
@@ -17,6 +17,7 @@ describe('appName: ' + harness.getCommandLineArgs().appName + ' (user: ' + harne
 	before(async () => {
 		harnessObj = await harness.init();
 		await UofC.init(harnessObj, waitShort, waitLong);
+		await UofC.startApp();
 		await UofC.login();
 	});
 	

@@ -8,7 +8,7 @@ const waitShort = 2000;
 const waitLong = 5000;
 const harness = require('../../../lib/harness');
 const HarnessJson = require('../../../lib/harness-json');
-const UofC = require('../../../lib/UofCLawApp');
+const UofC = require('../../../lib/UofCApps');
 const expect = require('chai').expect;
 
 describe('appName: ' + harness.getCommandLineArgs().appName + ' (user: ' + harness.getCommandLineArgs().role +
@@ -21,6 +21,7 @@ describe('appName: ' + harness.getCommandLineArgs().appName + ' (user: ' + harne
 	before(async () => {
 		harnessObj = await harness.init();
 		await UofC.init(harnessObj, waitShort, waitLong);
+		await UofC.startApp();
 		await UofC.login();
 		driver = harnessObj.driver;
 		By = harnessObj.By;
@@ -55,14 +56,6 @@ describe('appName: ' + harness.getCommandLineArgs().appName + ' (user: ' + harne
 		});
 		
 		it('reload the login page and validate the welcome message', async () => {
-			//temp - test steps
-			/*
-			let projUrl = harnessObj.baseUrl;
-			let userRole = harnessObj.getUserRole();
-			userRole = harness.getCommandLineArgs().role;
-			*/
-			//temp - above
-			
 			//re-run the baseUrl (project's url)- login page
 			await driver.get(harnessObj.baseUrl);
 			

@@ -1,0 +1,27 @@
+{
+  "createBasicPage": {
+    "pageTitle": "Page Title",
+    "isPublished": false,
+    "menuSettingsValues": {
+      "menuLinkTitle": "Menu Title",
+      "menuDescription": "Menu Description",
+      "menuParentItem": "<Main navigation>"
+    },
+    "verifyPage": true
+  },
+  "editHeroCTA": {
+    "headingValue":  "Hero CTA Block Heading",
+    "descriptionValue":  "Hero CTA Block Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+    "textPosition": "Middle Left",
+    "textAlignment": "Left",
+    "bgColourItemNr": 7,
+    "overlaidTextColour": "Light",
+    "backgroundImage": "HeroCTATestImage.jpg",
+    "imageAltText": "Hero CTA Alt Text",
+    "doNotApplyGradient": false,
+    "ctaButtons": {
+      "Url1": "https://www.ucalgary.ca/",
+      "btnLabel1": "Hero CTA Btn Label 1"
+    }
+  }
+}

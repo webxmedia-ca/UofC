@@ -16,10 +16,10 @@ before_script:
 
 #################################################################################################################
 stages:
-  #- build_automated_env
-  - automation_tests      #stage for all jobs including both manual and automated ones
+#  - build_automated_env
   - tests_run_automated   #stage for the automated jobs only
   - tests_run_manual      #stage for the manual jobs only
+  - docker_build_and_push #stage for re-building & pushing the docker image
 
 #build_automated_env:
 #  stage: build_automated_env
@@ -36,26 +36,27 @@ autoRun_Group1:
   stage: tests_run_automated
   script:
     - echo "automated test run -------------------------------------------------------------------------------------"
-    #  - echo "npm run uclaw:test1 -- --env=tst --appName=ucLaw --browserStack=true"
-    - npm run generic:AllUserRolesLoginLogoutSuccessfully -- --env=tst --appName=ucLaw --browserStack=true
+    - npm run generic:CreateABasicPage -- --env=tst --appName=ucLaw --browserStack=true
+    - npm run generic:CreateEditDeleteABasicPage -- --env=tst --appName=ucLaw --browserStack=true
 
-    #  --- below there are more examples of running tests (with & without GitLab Variables):
-    #  - ${npm_run_test}
+# --- below there are more examples of running tests (with & without GitLab Variables):
+#    - ${npm_run_test}
 #    - npm run uclaw:test1 -- --env=tst --appName=ucLaw --browserStack=true
 #    - npm run ${testName} -- --env=tst --appName=ucLaw --browserStack=true --browserStackArgs=${browserStackArgs1}
-    #  - npm run ${testName} -- --env=${env} --appName=ucLaw --browserStack=true  #this also works
-    - echo
+#    - npm run ${testName} -- --env=${env} --appName=ucLaw --browserStack=true  #this also works
+#    - npm run generic:ValidateInternalMenuAsSiteAdmin -- --env=tst --appName=ucLaw --browserStack=true --browserStackArgs=Windows,10,Chrome,69.0,1920x1080
+#    - echo
 
 #  when: manual
-  allow_failure: false
+  allow_failure: true
 
   only:
-    - master      # the test/job will run only in master branch
+    - master
 
 #  artifacts:
 #    reports:
 #      junit: rspec.xml
-  #      junit: ${testName}.xml
+#      junit: ${testName}.xml
 
   environment:  # not sure what the one below does - is it needed?!
     name: ${env}
@@ -66,16 +67,20 @@ autoRun_Group2:
   stage: tests_run_automated
   script:
     - echo "automated test run -------------------------------------------------------------------------------------"
+    - npm run generic:AllUserRolesLoginLogoutSuccessfully -- --env=tst --appName=ucLaw --browserStack=true
     - npm run generic:ValidateInternalMenuAsSiteAdmin -- --env=tst --appName=ucLaw --browserStack=true
     - npm run generic:ValidateInternalMenuAsContentAdmin -- --env=tst --appName=ucLaw --browserStack=true
     - npm run generic:ValidateInternalMenuAsContentEditor -- --env=tst --appName=ucLaw --browserStack=true
+    - npm run generic:AddHeroCTAToBasicPage -- --env=tst --appName=ucLaw --browserStack=true
+    - npm run generic:AddTextHeroCTAToBasicPage -- --env=tst --appName=ucLaw --browserStack=true
+    - npm run generic:AddAccordionToBasicPage -- --env=tst --appName=ucLaw --browserStack=true
     - echo
 
-  #  when: manual
-  allow_failure: false
+#  when: manual
+  allow_failure: true
 
   only:
-    - master      # the test/job will run only in master branch
+    - master
 
 #  artifacts:
 #    reports:
@@ -87,10 +92,133 @@ autoRun_Group2:
 
 
 
+#################################################################################################################
+1.Build_Docker_Image:
+  stage: docker_build_and_push
+  script:
+    - echo "build docker image if automated tests are passed -------------------------------------------------------"
+    - echo "nothing yet - not done"
+    - echo "$REGISTRY_PASSWORD" | docker login -u "$REGISTRY_USER" --password-stdin
+    - docker info
+#    - docker build --no-cache -t git.caas.ucalgary.ca:4567/ws/drupal8/qa/automation-testing:latest .
+#    - if [ -n "${UPLOAD_TO_S3}" ]; then make upload; fi
+    - echo
+
+  when: manual
+  allow_failure: false
+
+  only:
+    - master
+
+#################################################################################################################
+2.Push_Docker_Image:
+  stage: docker_build_and_push
+  script:
+    - echo "push docker image if docker image was built ------------------------------------------------------------"
+    - echo "nothing yet - not done"
+    - echo "$REGISTRY_PASSWORD" | docker login -u "$REGISTRY_USER" --password-stdin
+#    - docker push git.caas.ucalgary.ca:4567/ws/drupal8/qa/automation-testing:latest .
+#    - if [ -n "${Build_Docker_Image}" ]; then make upload; fi
+    - echo
+
+  when: manual
+  allow_failure: false
+
+  only:
+    - master
+
+#################################################################################################################
+3.Docker_Image_Test:
+  stage: docker_build_and_push
+  script:
+    - echo "run a small test to check the build docker image works -------------------------------------------------"
+    - npm run generic:ValidateInternalMenuAsContentEditor -- --env=tst --appName=ucLaw --browserStack=true
+    - echo
+
+  when: manual
+  allow_failure: false
+
+  only:
+    - master
+
 
 
 #################################################################################################################
-# THE INTENTION OF THE BELOW JOBS / RUNS ARE FOR ALL THE AVAILABLE TESTS TO BE RUN MANUALLY IF / WHEN NEEDED
+# THE INTENTION OF THE BELOW JOBS / RUNS ARE FOR ALL THE AVAILABLE TESTS TO BE RUN MANUALLY ONE BY ONE
+#################################################################################################################
+CreateABasicPage:
+  stage: tests_run_manual
+  script:
+    - echo "manual test run -------------------------------------------------------------------------------------"
+    - npm run generic:CreateABasicPage -- --env=tst --appName=ucLaw --browserStack=true
+    - npm run generic:AddHeroCTAToBasicPage -- --env=tst --appName=ucLaw --browserStack=true
+    - echo
+
+  when: manual
+  #  allow_failure: false
+  allow_failure: true
+
+  only:
+    - master      # the test/job will run only in master branch
+
+  environment:    # not sure what the one below does - is it needed?!
+    name: ${env}
+    url: https://law-tst.ucalgary.ca
+
+#################################################################################################################
+AddHeroCTAToBasicPage:
+  stage: tests_run_manual
+  script:
+    - echo "manual test run -------------------------------------------------------------------------------------"
+    - npm run generic:AddHeroCTAToBasicPage -- --env=tst --appName=ucLaw --browserStack=true
+    - echo
+
+  when: manual
+  allow_failure: true #false
+
+  only:
+    - master      # the test/job will run only in master branch
+
+  environment:    # not sure what the one below does - is it needed?!
+    name: ${env}
+    url: https://law-tst.ucalgary.ca
+
+#################################################################################################################
+AddTextHeroCTAToBasicPage:
+  stage: tests_run_manual
+  script:
+    - echo "manual test run -------------------------------------------------------------------------------------"
+    - npm run generic:AddTextHeroCTAToBasicPage -- --env=tst --appName=ucLaw --browserStack=true
+    - echo
+
+  when: manual
+  allow_failure: true #false
+
+  only:
+    - master      # the test/job will run only in master branch
+
+  environment:    # not sure what the one below does - is it needed?!
+    name: ${env}
+    url: https://law-tst.ucalgary.ca
+
+#################################################################################################################
+AddAccordionToBasicPage:
+  stage: tests_run_manual
+  script:
+    - echo "manual test run -------------------------------------------------------------------------------------"
+    - npm run generic:AddAccordionToBasicPage -- --env=tst --appName=ucLaw --browserStack=true
+    - echo
+
+  when: manual
+  allow_failure: true #false
+
+  only:
+    - master      # the test/job will run only in master branch
+
+  environment:    # not sure what the one below does - is it needed?!
+    name: ${env}
+    url: https://law-tst.ucalgary.ca
+
 #################################################################################################################
 AllUserRolesLoginLogoutSuccessfully:
   stage: tests_run_manual
@@ -100,8 +228,7 @@ AllUserRolesLoginLogoutSuccessfully:
     - echo
 
   when: manual
-#  allow_failure: false
-  allow_failure: true
+  allow_failure: true #false
 
   only:
     - master      # the test/job will run only in master branch
@@ -138,8 +265,7 @@ ValidateInternalMenuAsContentAdmin:
     - echo
 
   when: manual
-#  allow_failure: false
-  allow_failure: true
+  allow_failure: true #false
 
   only:
     - master      # the test/job will run only in master branch
@@ -157,8 +283,7 @@ ValidateInternalMenuAsContentEditor:
     - echo
 
   when: manual
-#  allow_failure: false
-  allow_failure: true
+  allow_failure: true #false
 
   only:
     - master      # the test/job will run only in master branch

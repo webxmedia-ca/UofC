@@ -1,6 +1,7 @@
 /**
- * Created by valeriu.jecov on 18/10/2018.
- * NOTE: THIS TEST IS NOT YET DONE
+ * Created by valeriu.jecov on 07/02/2019.
+ * NOTE: THIS TEST IS DONE
+ * MANUAL TEST: UCWS-604 | https://ucalgary.atlassian.net/browse/UCWS-604
  */
 
 const waitShort = 2000;
@@ -8,16 +9,17 @@ const waitLong = 5000;
 const harness = require('../../../lib/harness');
 const HarnessJson = require('../../../lib/harness-json');
 const UofC = require('../../../lib/UofCApps');
-// const expect = require('chai').expect;
 
 //temp - so I can use driver. actions in the test here
 // UcLaw.init(harness.init, waitShort, waitLong);
-// const driver = UofC.getAttrs().driver;
+// let driver = harness.driver;
 //temp - so I can use driver. actions
 
 describe('appName: ' + harness.getCommandLineArgs().appName + ' (user: ' + harness.getCommandLineArgs().role +
   ') | env: ' + harness.getCommandLineArgs().env + ' | BrowserStack: ' + harness.getCommandLineArgs().browserStack, function () {
+	
 	let harnessObj = null;
+	// console.log('this.title: ' + this.title + '\n'); //not returning the suite title - which I want
 	
 	before(async () => {
 		harnessObj = await harness.init();
@@ -38,24 +40,26 @@ describe('appName: ' + harness.getCommandLineArgs().appName + ' (user: ' + harne
 	
 	//reading json data files and preparing the required variables for later usage
 	const dataJsonFilePath = require('path').join(__dirname, '/data/data.json');
-	
 	const newPageValues = new HarnessJson(dataJsonFilePath).getJsonData().createBasicPage;
+	const editHeroCTAValues = new HarnessJson(dataJsonFilePath).getJsonData().editHeroCTA;
+	const attachmentJsonFilePath = require('path').join(__dirname, '/attachments/' + editHeroCTAValues.backgroundImage);
+	// console.log('dataJsonFilePath:' + dataJsonFilePath);
+	// console.log('attachmentJsonFilePath:' + attachmentJsonFilePath);
+	
 	UofC.createBasicPage(newPageValues);
 	
 	describe('click Layout tab', () => {
 		UofC.clickOnTabByText('Layout', '#layout-builder');
 	});
 	
-	UofC.addNewSection('2', '1');   //add a new section (not hero) with the 1 col layout
-	
-	UofC.addNewBlock('2'
+	UofC.addNewBlock('1'
 	  , 'UCalgary'
 	  , 'details.UCalgary-blocks li>a:not([style="display: none;"]):not([href*=text])'
-	  , 'details.UCalgary-blocks:nth-child(22)>ul'
-	  , 'Add Streaming Media'
+	  , 'details.UCalgary-blocks:nth-child(23)>ul'
+	  , 'Add Hero CTA'
 	  , 'details[id*=edit-settings-teams]'
-	  , 'CSM'
-	  , '.layout.col1:not([class*=hero]) .streaming-media'
+	  , null
+	  , '.layout-blocks-ucws-hero-cta'
 	);
 	
 	describe('save page layout', () => {
@@ -63,25 +67,5 @@ describe('appName: ' + harness.getCommandLineArgs().appName + ' (user: ' + harne
 		UofC.clickLayoutActionButtons('save', 'Close Status Message\nStatus message\nThe layout override has been saved.');
 	});
 	
-	UofC.editStreamingMediaBlock('test block heading ' + Math.floor((Math.random() * 1000) + 1)
-	  , 'test block description ' + Math.floor((Math.random() * 1000) + 1)
-	  , 'accessibility text ' + Math.floor((Math.random() * 1000) + 1)
-	  , 'caption for media ' + Math.floor((Math.random() * 1000) + 1)
-	  , 'creator credit ' + Math.floor((Math.random() * 1000) + 1)
-	  , 'Youtube'
-	  , 'https://www.youtube.com/watch?v=jMgvnXq-s8o&list=PLGIDwNGRDzUAK78PuEgxsmDCGmym7romC'
-	  , null
-	  , false
-	  , null
-	);
-	
-	// describe('just wait ...................................................................', () => {
-	// 	it('wait', async () => {
-	// 		console.log('wait');
-	// 	});
-	//
-	// 	it('', async () => {
-	//
-	// 	});
-	// });
+	UofC.editHeroCTABlock(editHeroCTAValues, attachmentJsonFilePath);
 });
