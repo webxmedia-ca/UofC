@@ -9,15 +9,14 @@
     "generic:ValidateInternalMenuAsContentAdmin": "mocha --timeout=60000 --slow=5000 --reporter=spec tests/generic/ValidateInternalMenuAsContentAdmin/spec.js --role=contentadmin --failureFatal=1",
     "generic:ValidateInternalMenuAsContentEditor": "mocha --timeout=60000 --slow=5000 --reporter=spec tests/generic/ValidateInternalMenuAsContentEditor/spec.js --role=contenteditor --failureFatal=1",
     "generic:CreateABasicPage": "mocha --timeout=600000 --slow=5000 --reporter=spec tests/generic/CreateABasicPage/spec.js --role=siteadmin --failureFatal=1",
-    "generic:CreateEditDeleteABasicPage": "mocha --timeout=600000 --slow=5000 --reporter=spec tests/generic/CreateEditDeleteABasicPage/spec.js --role=siteadmin --failureFatal=1",
-    "generic:AddHeroCTAToBasicPage": "mocha --timeout=600000 --slow=5000 --reporter=spec tests/generic/AddHeroCTAToBasicPage/spec.js --role=siteadmin --failureFatal=1",
+    "generic:CreateEditDeleteABasicPage": "mocha --timeout=650000 --slow=5000 --reporter=spec tests/generic/CreateEditDeleteABasicPage/spec.js --role=siteadmin --failureFatal=1",
+    "generic:AddHeroCTAToBasicPage": "mocha --timeout=650000 --slow=5000 --reporter=spec tests/generic/AddHeroCTAToBasicPage/spec.js --role=siteadmin --failureFatal=1",
     "generic:AddTextHeroCTAToBasicPage": "mocha --timeout=600000 --slow=5000 --reporter=spec tests/generic/AddTextHeroCTAToBasicPage/spec.js --role=siteadmin --failureFatal=1",
     "generic:AddAccordionToBasicPage": "mocha --timeout=600000 --slow=5000 --reporter=spec tests/generic/AddAccordionToBasicPage/spec.js --role=siteadmin --failureFatal=1",
 
-
-    "uclaw:test1": "mocha --timeout=70000 --slow=5000 --reporter=spec tests/uclaw/test1/spec.js --role=siteadmin --failureFatal=1",
-    "uclaw:test2": "mocha --timeout=30000 --slow=5000 --reporter=spec tests/uclaw/test2/spec.js --role=siteadmin --failureFatal=1",
-    "ucweb:test3": "mocha --timeout=30000 --slow=5000 --reporter=spec tests/ucweb/test3/spec.js --role=siteadmin --failureFatal=1"
+    "uclaw:test1": "mocha --timeout=70000 --slow=5000 --reporter=spec UnneededExamples/tests/uclaw/test1/spec.js --role=siteadmin --failureFatal=1",
+    "uclaw:test2": "mocha --timeout=30000 --slow=5000 --reporter=spec UnneededExamples/tests/uclaw/test2/spec.js --role=siteadmin --failureFatal=1",
+    "ucweb:test3": "mocha --timeout=30000 --slow=5000 --reporter=spec UnneededExamples/tests/ucweb/test3/spec.js --role=siteadmin --failureFatal=1"
   },
   "repository": {
     "type": "git",

@@ -1,30 +1,38 @@
 .idea
 .git
+.log
 #below are some examples of using reg-exes:
 # see more here: https://docs.docker.com/engine/reference/builder/#dockerignore-file
 #*.yml
 #!.gitlab-ci.yml  #here ! means exception
 #  **/*.log
-.gitlab-ci_FromRoberio.yml
-.gitlab-ci_OLD-GOOD.yml
-.gitlab-ci_goodV1.yml
-.gitlab-ci_goodV2.yml
-.gitlab-ci_goodV3.yml
-.gitlab-ci_playGround.yml
+#
+#.gitlab-ci_FromRoberio.yml
+#.gitlab-ci_OLD-GOOD.yml
+#.gitlab-ci_goodV1.yml
+#.gitlab-ci_goodV2.yml
+#.gitlab-ci_goodV3.yml
+#.gitlab-ci_playGround.yml
+#.gitlab-ci_OtherProjectPipelineTrigger.yml
+#
+#tmp-Dockerfile.production
+#tmp-Dockerfile_v1
+#tmp-Dockerfile_v2
+#tmp-test1.sh
+#
 node_modules
-tmp-Dockerfile.production
-tmp-Dockerfile_v1
-tmp-Dockerfile_v2
-tmp-test1.sh
-.log
-Dockerfile_goodCopy
+UnneededExamples
+#
+#Dockerfile_goodSmall
+#Dockerfile_goodCopy
+#Dockerfile_GoodOld
+#
 docker-compose.yml
-_lib_UofC_Template.js
-revealingPrototypePatternExample.js
-UofCNameItApp_Template.js
+#
+# from lib folder:
+#_lib_UofC_Template.js
+#revealingPrototypePatternExample.js
+#UofCNameItApp_Template.js
+#
 debug.log
-ucautomation.iml
-#tests
-.jshintrc
-grunt
-GruntFile.js
+#ucautomation.iml

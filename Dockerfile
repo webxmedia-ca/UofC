@@ -1,5 +1,6 @@
 ﻿# got this dockerfile built based on:
 #https://github.com/browserstack/browserstack-docker-example/blob/master/Dockerfile
+#FROM node:8.12-slim    #https://hub.docker.com/_/node?tab=tags&page=16
 FROM node:8.12.0
 
 #change the loglevel (https://docs.npmjs.com/misc/config):
@@ -16,7 +17,7 @@ WORKDIR /ucautomation
 COPY package.json /ucautomation
 
 #RUN ["npm", "install"]
-#RUN npm install
+RUN npm install
 
 #the one below - not sure if needed !!!!!!
 LABEL license=MIT version=$VERSION authors=ValeriuJecov Description="This image is used to do run automation testing" Vendor="Some Vendor"

@@ -14,12 +14,13 @@ const UofC = require('../../../lib/UofCApps');
 // UcLaw.init(harness.init, waitShort, waitLong);
 // let driver = harness.driver;
 //temp - so I can use driver. actions
+const info = require(info);
 
 describe('appName: ' + harness.getCommandLineArgs().appName + ' (user: ' + harness.getCommandLineArgs().role +
   ') | env: ' + harness.getCommandLineArgs().env + ' | BrowserStack: ' + harness.getCommandLineArgs().browserStack, function () {
 	
 	let harnessObj = null;
-	// console.log('this.title: ' + this.title + '\n'); //not returning the suite title - which I want
+	// console.log('this.title: ' + this.title + '\n'); //not returning the suite's title I want
 	
 	before(async () => {
 		harnessObj = await harness.init();
@@ -40,18 +41,20 @@ describe('appName: ' + harness.getCommandLineArgs().appName + ' (user: ' + harne
 	
 	//reading json data files and preparing the required variables for later usage
 	const dataJsonFilePath = require('path').join(__dirname, '/data/data.json');
-	const newPageValues = new HarnessJson(dataJsonFilePath).getJsonData().createBasicPage;
-	const editHeroCTAValues = new HarnessJson(dataJsonFilePath).getJsonData().editHeroCTA;
-	const attachmentJsonFilePath = require('path').join(__dirname, '/attachments/' + editHeroCTAValues.backgroundImage);
-	// console.log('dataJsonFilePath:' + dataJsonFilePath);
-	// console.log('attachmentJsonFilePath:' + attachmentJsonFilePath);
 	
+	/*
+	const editHeroCTAVals = new HarnessJson(dataJsonFilePath).getJsonData().editHeroCTA;
+	const attachmentFilePath = require('path').join(__dirname, '/attachments/' + editHeroCTAVals.backgroundImage);
+	console.log('dataJsonFilePath  : ' + dataJsonFilePath);
+	console.log('attachmentFilePath: ' + attachmentFilePath);
+	*/
 	
 	//1. Create a basic page:
 	//	Title
 	//  Published = true
 	//  click Save btn!
 	//---> Basic PageTitle # has been created
+	const newPageValues = new HarnessJson(dataJsonFilePath).getJsonData().createBasicPage;
 	UofC.createBasicPage(newPageValues);
 	
 	//2. Click Layout
@@ -59,195 +62,118 @@ describe('appName: ' + harness.getCommandLineArgs().appName + ' (user: ' + harne
 		UofC.clickOnTabByText('Layout', '#layout-builder');
 	});
 	
-	describe('wait', () => {
-		it('wait', async () => {
-			console.log('wait');
-		});
-	});
-	
-	
-	
-	
-	
-	//3. click 1st Add Block    --> dialog displayed
-	//  select Add Hero CTA     --> Teams drop down displays    ???!!!???!!! dropdown OR list?!?!?!
-	// click Add Block btn!     --> new block displayed
+	//3. click 1st Add Block btn and select *Add Hero CTA* block
 	UofC.addNewBlock('1'
 	  , 'UCalgary'
-	  , 'details.UCalgary-blocks li>a:not([style="display: none;"]):not([href*=text])'
+	  , 'details.UCalgary-blocks li>a[href*=ucws_hero_cta]'
 	  , 'details.UCalgary-blocks:nth-child(23)>ul'
 	  , 'Add Hero CTA'
 	  , 'details[id*=edit-settings-teams]'
 	  , null
-	  , '.layout-blocks-ucws-hero-cta'
-	  , 'Close Status Message\nStatus message\nThe layout override has been saved.'
+	  , null
+	  , null
+	  , '#layout-builder .layout.hero'  //'.layout-blocks-ucws-hero-cta' OR a[title="Edit Hero Call to Action block"]
 	);
 	
-	describe('wait', () => {
-		it('wait', async () => {
-			console.log('wait');
-		});
-	});
-	
-	
-	
-	
-	
-	//4. click 2nd Add Section btn
-	//  select One Column                                           --> 2nd Add Block & 3rd Add Section btns are displayed
+	//4. click 2nd Add Section btn and choose 'One Column' option
 	UofC.addNewSection('2', '1');
 	
-	describe('check the 2nd Add Block and 3rd Add Section buttons are displayed', () => {
-		UofC.validateDisplayedText('.layout-section:nth-child(4) .new-block>a', 'Add Block');
-		UofC.validateDisplayedText('.new-section:nth-child(5)>a', 'Add Section');
-	});
-	
-	describe('wait', () => {
-		it('wait', async () => {
-			console.log('wait');
-		});
+	describe('check the 2nd Add Block and 3rd Add Layout buttons are displayed', () => {
+		UofC.validateDisplayedText('.layout-section:nth-child(3) .new-block>a', 'Add Block');   //div[data-layout-delta="1"] .new-block>a
+		UofC.validateDisplayedText('.new-section:nth-child(4)>a', 'Add Layout');
 	});
 	
 	
-	
-	
-	
-	//5. click 2nd Add Block btn                                            --> dialog displayed
-	//  click Add Banner under UCalgary                                     --> Teams list will be displayed
-	//  don't select any Teams & click the Add Block button                 --> New Block is displayed
+	//5. click 2nd Add Block btn and select *Add Banner* block
 	UofC.addNewBlock('2'
 	  , 'UCalgary'
-	  , 'details.UCalgary-blocks li>a:not([style="display: none;"]):not([href*=text])'
+	  , 'details.UCalgary-blocks li>a[href*=ucws_banner]'
 	  , 'details.UCalgary-blocks:nth-child(23)>ul'
 	  , 'Add Banner'
 	  , 'details[id*=edit-settings-teams]'
 	  , null
-	  , '.layout-blocks-ucws-hero-cta'
-	  , 'Close Status Message\nStatus message\nThe layout override has been saved.'
+	  , null
+	  , null
+	  , '.draggable:nth-child(1) a[title="Edit Banner block"]' // , 'div:nth-child(1)>.layout-blocks-ucws-banner'
 	);
 	
-	describe('wait', () => {
-		it('wait', async () => {
-			console.log('wait');
-		});
-	});
-	
-	
-	
-	
-	
-	//6. Click 2nd *Add Block*      --> dialog displayed
-	//  click *Add More Information* under *UCalgary* drop down section     --> Teams list displayed
-	//  Do not select any team, click *Add Block*                           --> New Block Displayed
+	//6. click 2nd Add Block btn and select *Add More Information* block
 	UofC.addNewBlock('2'
 	  , 'UCalgary'
-	  , 'details.UCalgary-blocks li>a:not([style="display: none;"]):not([href*=text])'
+	  , 'details.UCalgary-blocks li>a[href*=ucws_more_info]'
 	  , 'details.UCalgary-blocks:nth-child(23)>ul'
 	  , 'Add More Information'
 	  , 'details[id*=edit-settings-teams]'
 	  , null
-	  , '.layout-blocks-ucws-hero-cta'
-	  , 'Close Status Message\nStatus message\nThe layout override has been saved.'
+	  , null
+	  , null
+	  , 'div:nth-child(1) a[title="Edit More Information block"]'    // , '.layout-blocks-ucws-more-info'
 	);
 	
-	describe('wait', () => {
-		it('wait', async () => {
-			console.log('wait');
-		});
-	});
-	
-	
-	
-	
-	
-	//7. Click 2nd *Add Block*                                              --> dialog displayed
-	//  click *Add Sidekick CTA* under *UCalgary* drop down section         --> Team list displayed
-	//  Do not select any team, click *Add Block*                           --> New Block Displayed
+	//7. click 2nd Add Block btn and select *Add Sidekick CTA* block
 	UofC.addNewBlock('2'
 	  , 'UCalgary'
-	  , 'details.UCalgary-blocks li>a:not([style="display: none;"]):not([href*=text])'
+	  , 'details.UCalgary-blocks li>a[href*=ucws_sidekick]'
 	  , 'details.UCalgary-blocks:nth-child(23)>ul'
 	  , 'Add Sidekick CTA'
 	  , 'details[id*=edit-settings-teams]'
 	  , null
-	  , '.layout-blocks-ucws-hero-cta'
-	  , 'Close Status Message\nStatus message\nThe layout override has been saved.'
+	  , null
+	  , null
+	  , 'div:nth-child(1) a[title="Edit Sidekick Call to Action block"]'    //, '.layout-blocks-ucws-sidekick-cta'
 	);
 	
-	describe('wait', () => {
-		it('wait', async () => {
-			console.log('wait');
-		});
-	});
-	
-	
-	
-	
-	
-	//8. Click 2nd *Add Block*                                              --> dialog displayed
-	//  click *Add Banner* under *UCalgary* drop down section               --> Team list displayed
-	//  Do not select any team, click *Add Block*                           --> New Block Displayed
+	//8. click 2nd Add Block btn and select *Add Banner* block
 	UofC.addNewBlock('2'
 	  , 'UCalgary'
-	  , 'details.UCalgary-blocks li>a:not([style="display: none;"]):not([href*=text])'
+	  , 'details.UCalgary-blocks li>a[href*=ucws_banner]'
 	  , 'details.UCalgary-blocks:nth-child(23)>ul'
 	  , 'Add Banner'
 	  , 'details[id*=edit-settings-teams]'
 	  , null
-	  , '.layout-blocks-ucws-hero-cta'
-	  , 'Close Status Message\nStatus message\nThe layout override has been saved.'
+	  , null
+	  , null
+	  , '.draggable:nth-child(4) a[title="Edit Banner block"]'   //, 'div:nth-child(4)>.layout-blocks-ucws-banner'
 	);
 	
-	describe('wait', () => {
-		it('wait', async () => {
-			console.log('wait');
-		});
-	});
-	
-	
-	
-	
-	
-	//9. Click 2nd *Add Block*                                              --> dialog displayed
-	//  click *Add Image with Text* under *UCalgary* drop down section      --> Team list displayed
-	//  Do not select any team, click *Add Block*                           --> New Block Displayed
+	//9. click 2nd Add Block btn and select *Add Image with Text* block
 	UofC.addNewBlock('2'
 	  , 'UCalgary'
-	  , 'details.UCalgary-blocks li>a:not([style="display: none;"]):not([href*=text])'
+	  , 'details.UCalgary-blocks li>a[href*=ucws_image_text]'
 	  , 'details.UCalgary-blocks:nth-child(23)>ul'
 	  , 'Add Image with Text'
 	  , 'details[id*=edit-settings-teams]'
 	  , null
-	  , '.layout-blocks-ucws-hero-cta'
+	  , null
+	  , null
+	  , 'div:nth-child(1) a[title="Edit Image with Text block"]'    //, '.layout-blocks-ucws-image_text'
+	  //, '.draggable:nth-child(5) a[title="Edit Image with Text block"]'   //this is good as well (another example)
 	);
-	
-	describe('wait', () => {
-		it('wait', async () => {
-			console.log('wait');
-		});
-	});
-	
-	
-	
 	
 	describe('save page layout', () => {
 		UofC.clickLayoutActionButtons('save', 'Close Status Message\nStatus message\nThe layout override has been saved.');
 	});
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	const editHeroCTAValues = new HarnessJson(dataJsonFilePath).getJsonData().editHeroCTA;
+	const attachmentJsonFilePath = require('path').join(__dirname, '/attachments/' + editHeroCTAValues.backgroundImage);
 	UofC.editHeroCTABlock(editHeroCTAValues, attachmentJsonFilePath);
+	
+	const bannerBlock1Values = new HarnessJson(dataJsonFilePath).getJsonData().editBanner1;
+	UofC.editBannerBlock(bannerBlock1Values);
+	
+	describe('wait', () => {
+		it('wait', async () => {
+			console.log('wait');
+			info('some info');
+		});
+	});
+	
+	const moreInfoBlockValues = new HarnessJson(dataJsonFilePath).getJsonData().editMoreInfo;
+	UofC.editMoreInfoBlock(moreInfoBlockValues);
+	
+	describe('wait', () => {
+		it('wait', async () => {
+			console.log('wait');
+		});
+	});
 });

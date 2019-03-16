@@ -1,33 +1,58 @@
 #################################################################################################################
 #image: docker
-#image: git.caas.ucalgary.ca:4567/valeriu.jecov/ucautomation:latest
-image: git.caas.ucalgary.ca:4567/ws/drupal8/qa/automation-testing:latest
+image: git.caas.ucalgary.ca:4567/valeriu.jecov/ucautomation:latest
 
+#services:
+#  - git.caas.ucalgary.ca:4567/ws/drupal8/qa/automation-testing:browserstacklocal
+#image:
+#  name: git.caas.ucalgary.ca:4567/ws/drupal8/qa/automation-testing:latest
+#  entrypoint: ["nohup ./BrowserStackLocal --key=c8EHLyzv9zWTJ2zGRedY --force-local --local-identifier=AutomationTest2 > output.out 2>&1 &"]
+
+#run the browserstack local container
+#services:
+#  - git.caas.ucalgary.ca:4567/ws/drupal8/qa/automation-testing:browserstacklocal
 
 #################################################################################################################
 before_script:
   - echo "this is the before_script in action - will install frameworks' plugins"
-  - npm install      # temporarily disabled for testing (this should be installed when the image is built not every time when running a test)
-  #  - ls -al $PWD
-#  - echo "expect docker image to be up - tst env is ready for running the tests"
+#  - ls -al
+#linux version  : both below work
+#  - cat /etc/os-release
+#  - uname -r
+#  - /bin/bash
+
+
+
+
+
+
+
+######### BROWSER STACK LOCAL ########
+# Start BrowserStackLocal and wait for 10 seconds for the tunnel to come up
+#----------------->  the one below is not getting/reading the value of the ${BROWSERSTACK_LOCAL_KEY}
+#  - nohup ./BrowserStackLocal --key ${BROWSERSTACK_LOCAL_KEY} --force-local --local-identifier AutomationTest2 > output.out 2>&1 &
+
+#----------------->  the one below works perfectly ---was / once only
+#  - nohup ./BrowserStackLocal --key=c8EHLyzv9zWTJ2zGRedY --force-local --local-identifier=AutomationTest2 > output.out 2>&1 & #this works if I run the local container and in bash this command
+#  - sleep 10
+
+
+
+
+
+
+
+  - npm install
+#  - echo "expected docker image to be up, browserstacklocal as well - tst env is ready for running the tests"
   - echo
 
 
 
 #################################################################################################################
 stages:
-#  - build_automated_env
   - tests_run_automated   #stage for the automated jobs only
   - tests_run_manual      #stage for the manual jobs only
-  - docker_build_and_push #stage for re-building & pushing the docker image
-
-#build_automated_env:
-#  stage: build_automated_env
-#  image: git.caas.ucalgary.ca:4567/valeriu.jecov/ucautomation:latest
-#  script:
-#  - npm install
-#  - echo "expected docker image to be up - tst env should be ready for tests"
-
+  - docker_build_and_push #stage for re-building & pushing the docker image --- THIS STAGE IS NOT WORKING YET - NEEDS TO BE CREATED & TESTED
 
 
 #################################################################################################################
@@ -36,6 +61,7 @@ autoRun_Group1:
   stage: tests_run_automated
   script:
     - echo "automated test run -------------------------------------------------------------------------------------"
+#    - ./BrowserStackLocal --key c8EHLyzv9zWTJ2zGRedY --force-local --local-identifier=AutomationTest1
     - npm run generic:CreateABasicPage -- --env=tst --appName=ucLaw --browserStack=true
     - npm run generic:CreateEditDeleteABasicPage -- --env=tst --appName=ucLaw --browserStack=true
 
@@ -48,7 +74,7 @@ autoRun_Group1:
 #    - echo
 
 #  when: manual
-  allow_failure: true
+  allow_failure: false
 
   only:
     - master
@@ -77,7 +103,7 @@ autoRun_Group2:
     - echo
 
 #  when: manual
-  allow_failure: true
+  allow_failure: false
 
   only:
     - master
@@ -151,7 +177,24 @@ CreateABasicPage:
   script:
     - echo "manual test run -------------------------------------------------------------------------------------"
     - npm run generic:CreateABasicPage -- --env=tst --appName=ucLaw --browserStack=true
-    - npm run generic:AddHeroCTAToBasicPage -- --env=tst --appName=ucLaw --browserStack=true
+    - echo
+
+  when: manual
+  #  allow_failure: false
+  allow_failure: true
+
+  only:
+    - master      # the test/job will run only in master branch
+
+  environment:    # not sure what the one below does - is it needed?!
+    name: ${env}
+    url: https://law-tst.ucalgary.ca
+
+CreateEditDeleteABasicPage:
+  stage: tests_run_manual
+  script:
+    - echo "manual test run -------------------------------------------------------------------------------------"
+    - npm run generic:CreateEditDeleteABasicPage -- --env=tst --appName=ucLaw --browserStack=true
     - echo
 
   when: manual

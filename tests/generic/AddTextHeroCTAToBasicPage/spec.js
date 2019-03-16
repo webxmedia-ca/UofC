@@ -46,12 +46,14 @@ describe('appName: ' + harness.getCommandLineArgs().appName + ' (user: ' + harne
 	
 	UofC.addNewBlock('1'
 	  , 'UCalgary'
-	  , 'details.UCalgary-blocks li>a:not([style="display: none;"]):not([href*=text])'
+	  , 'details.UCalgary-blocks li>a[href*=ucws_text_hero_cta]'
 	  , 'details.UCalgary-blocks:nth-child(23)>ul'
 	  , 'Add Text Hero CTA'
 	  , 'details[id*=edit-settings-teams]'
 	  , null
-	  , 'div[class*=hero-cta]'
+	  , null
+	  , null
+	  , 'a[title*="Edit Text Hero Call to Action block"]'   //was: .layout-blocks-ucws-text-hero-cta
 	);
 	
 	describe('save page layout', () => {

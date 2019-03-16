@@ -5,7 +5,7 @@
 module.exports = {
     all: [
         'Gruntfile.js',
-        'lib/UofCApp-base.js',
+        'lib/UofCApps-base.js',
         'tests/**/*.js'
     ],
     options: {

@@ -43,8 +43,8 @@ describe('appName: ' + harness.getCommandLineArgs().appName + ' (user: ' + harne
 	const newPageValues = new HarnessJson(dataJsonFilePath).getJsonData().createBasicPage;
 	const editHeroCTAValues = new HarnessJson(dataJsonFilePath).getJsonData().editHeroCTA;
 	const attachmentJsonFilePath = require('path').join(__dirname, '/attachments/' + editHeroCTAValues.backgroundImage);
-	// console.log('dataJsonFilePath:' + dataJsonFilePath);
-	// console.log('attachmentJsonFilePath:' + attachmentJsonFilePath);
+	console.log('dataJsonFilePath      :' + dataJsonFilePath);
+	console.log('attachmentJsonFilePath:' + attachmentJsonFilePath);
 	
 	UofC.createBasicPage(newPageValues);
 	
@@ -54,12 +54,14 @@ describe('appName: ' + harness.getCommandLineArgs().appName + ' (user: ' + harne
 	
 	UofC.addNewBlock('1'
 	  , 'UCalgary'
-	  , 'details.UCalgary-blocks li>a:not([style="display: none;"]):not([href*=text])'
-	  , 'details.UCalgary-blocks:nth-child(23)>ul'
+	  , 'details.UCalgary-blocks li>a[href*=ucws_hero_cta]'
+	  , 'details.UCalgary-blocks:nth-child(23)>ul'  //.block-categories details.UCalgary-blocks>ul:nth-child(2) -- returns 2 items
 	  , 'Add Hero CTA'
 	  , 'details[id*=edit-settings-teams]'
 	  , null
-	  , '.layout-blocks-ucws-hero-cta'
+	  , null
+	  , null
+	  , 'a[title*="Edit Hero Call to Action block"]'   //#layout-builder .layout.hero
 	);
 	
 	describe('save page layout', () => {

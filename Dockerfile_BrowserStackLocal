@@ -1,0 +1,19 @@
+﻿#create the image from scratch
+#FROM alpine
+FROM debian:stable-slim
+
+# Copy the application files
+RUN mkdir -p /BrowserStackLocal
+WORKDIR /BrowserStackLocal
+COPY BrowserStackLocal /BrowserStackLocal/
+
+#ENTRYPOINT ["exec /BrowserStackLocal/BrowserStackLocal --verbose 2 --force-local --key=c8EHLyzv9zWTJ2zGRedY --local-identifier AutomationTest2"]
+##!/bin/bash
+#exec /usr/local/bin/BrowserStackLocal --verbose 2 --force-local --key=$BROWSERSTACK_LOCAL_KEY
+
+ENTRYPOINT ["./BrowserStackLocal --key=c8EHLyzv9zWTJ2zGRedY --force-local --local-identifier=AutomationTest2"]
+#CMD ./BrowserStackLocal --key c8EHLyzv9zWTJ2zGRedY --force-local --local-identifier=AutomationTest2
+#ENTRYPOINT ["./BrowserStackLocal --key c8EHLyzv9zWTJ2zGRedY --force-local --local-identifier=AutomationTest2"]
+#ENTRYPOINT ["./BrowserStackLocal --key c8EHLyzv9zWTJ2zGRedY --force-local --local-identifier=AutomationTest2 > output.out 2>&1 &"]
+#ENTRYPOINT ["nohup ./BrowserStackLocal --key c8EHLyzv9zWTJ2zGRedY --force-local --local-identifier=AutomationTest2 > output.out 2>&1 &"]
+#RUN nohup ./BrowserStackLocal --key=c8EHLyzv9zWTJ2zGRedY --force-local --local-identifier=AutomationTest2 > output.out 2>&1 &

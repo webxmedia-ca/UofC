@@ -20,7 +20,7 @@
     "imageAltText": "Hero CTA Alt Text",
     "doNotApplyGradient": false,
     "ctaButtons": {
-      "Url1": "https://www.ucalgary.ca/",
+      "Url1": "https://www.google.ca/",
       "btnLabel1": "Hero CTA Btn Label 1"
     }
   }

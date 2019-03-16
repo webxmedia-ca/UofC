@@ -1,7 +1,7 @@
 {
   "appsUrls": {
-    "ucLawNew": "https://law-dev.ucalgary.ca/",
-    "ucLaw": "https://staging-ucws.pantheonsite.io",
+    "ucLaw": "https://law-dev.ucalgary.ca",
+    "ucLawOld": "https://staging-ucws.pantheonsite.io",
     "ucWeb": "",
     "ucXplore": "",
     "ucProjName": ""
@@ -41,7 +41,7 @@
     "debug": true,
     "console": "verbose",
     "networkLogs": true,
-    "local": false,
-    "localIdentifier": "AutomationTest -- this is used only when local = true -- do not use local settings yet!"
+    "local": true,
+    "localIdentifier": "AutomationTest2"
   }
 }
