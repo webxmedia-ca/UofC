@@ -22,31 +22,29 @@ describe('appName: ' + harness.getCommandLineArgs().appName + ' (user: ' + harne
 	});
 	
 	after(async () => {
-		await harnessObj.quit();
+		await harnessObj.quit(this);
 	});
 	
 	afterEach(async () => {
 		await UofC.afterEachTest(this.ctx.currentTest);
-		await UofC.afterEachTest(this.ctx.currentTest.title);
-		await UofC.afterEachTest(this.ctx.currentTest.state);
 	});
 	
-	describe('validate the "content" menu exists when contenteditor user is logged in', () => {
+	describe('the "content" menu exists when contenteditor user is logged in', () => {
 		//1. Content menu exists
-		UofC.validateDisplayedText('a[class*=admin-content]', 'Content');
+		UofC.validateDisplayedTextEquals('a[class*=admin-content]', 'Content');
 	});
 	
-	describe('validate the "structure" menu and sub-menus when contenteditor user is logged in', () => {
+	describe('the "structure" menu and sub-menus exist when contenteditor user is logged in', () => {
 		//2. Structure menu exists
-		UofC.validateDisplayedText('a[class*=admin-structure]', 'Structure');
+		UofC.validateDisplayedTextEquals('a[class*=admin-structure]', 'Structure');
 		//mouse over the Structure menu
 		it('mouse over the "structure" menu', async () => {
 			await UofC.mouseHover('a[class*=admin-structure]');
 		});
-		it('wait for the submenu to become displayed', async () => {
+		it('the submenu is displayed', async () => {
 			await UofC.waitForObjectLoad('.hover-intent a[class*=vocabulary-collection]', waitLong, 500, true);
 		});
 		//check Structure's sub-menus
-		UofC.validateDisplayedText('.hover-intent a[class*=vocabulary-collection]', 'Taxonomy');
+		UofC.validateDisplayedTextEquals('.hover-intent a[class*=vocabulary-collection]', 'Taxonomy');
 	});
 });

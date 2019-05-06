@@ -20,7 +20,7 @@ COPY package.json /ucautomation
 RUN npm install
 
 #the one below - not sure if needed !!!!!!
-LABEL license=MIT version=$VERSION authors=ValeriuJecov Description="This image is used to do run automation testing" Vendor="Some Vendor"
+LABEL license=MIT version=$VERSION authors=ValeriuJecov Description="This image is used to do run automation testing" Vendor="WebXMedia"
 
 #new stuff --------------------------------------------------------:
 #without this stuff, manually runnning the tests won't work (from bash cmd)

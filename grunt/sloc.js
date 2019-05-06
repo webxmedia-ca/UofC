@@ -13,7 +13,7 @@ module.exports = {
             'tests': [
                 '**.js',
                 '**/**.js',
-
+                '**/**/**.js'
             ]
         }
     }

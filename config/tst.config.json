@@ -1,10 +1,11 @@
 {
   "appsUrls": {
     "ucLaw": "https://law-dev.ucalgary.ca",
+    "ucLawStaging": "https://staging-web.ucalgary.ca",
     "ucLawOld": "https://staging-ucws.pantheonsite.io",
-    "ucWeb": "",
+    "ucWeb": "https://staging-web.ucalgary.ca",
     "ucXplore": "",
-    "ucProjName": ""
+    "ucProjName": "http://project-name.ucalgary.ca"
   },
   "siteadmin": {
     "credentials": {
@@ -37,11 +38,11 @@
     "osVersion": "7",
     "browserName": "Chrome",
     "browserVersion": "70.0",
-    "resolution": "1024x768",
+    "resolution": "1280x1024",
     "debug": true,
     "console": "verbose",
     "networkLogs": true,
     "local": true,
-    "localIdentifier": "AutomationTest2"
+    "localIdentifier": "AutomationTest1"
   }
 }

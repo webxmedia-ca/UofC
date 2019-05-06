@@ -28,13 +28,11 @@ describe('appName: ' + harness.getCommandLineArgs().appName + ' (user: ' + harne
 	});
 	
 	after(async () => {
-		await harnessObj.quit();
+		await harnessObj.quit(this);
 	});
 	
 	afterEach(async () => {
 		await UofC.afterEachTest(this.ctx.currentTest);
-		await UofC.afterEachTest(this.ctx.currentTest.title);
-		await UofC.afterEachTest(this.ctx.currentTest.state);
 	});
 	
 	//reading json data files and preparing the required variables for later usage
@@ -47,37 +45,38 @@ describe('appName: ' + harness.getCommandLineArgs().appName + ' (user: ' + harne
 		UofC.clickOnTabByText('Layout', '#layout-builder');
 	});
 	
-	//TODO: here we might have a bug (2nd Layout link not displayed - waiting for Keanu's reply) - default was clicking 2nd Add Layout btn
-	UofC.addNewSection('1', '1');   //add a new section (not hero) with the 1 col layout
+	UofC.addNewLayout('1', '1');
 	
-	describe('check the 2nd Add Block and 3rd Add Section buttons are displayed', () => {
-		UofC.validateDisplayedText('.layout-section:nth-child(3) .new-block>a', 'Add Block');
-		UofC.validateDisplayedText('.new-section:nth-child(4)>a', 'Add Layout');
+	// describe('check the 2nd Add Block and 3rd Add Section buttons are displayed', () => {
+	// 	it('wait for the 2nd Add Block link to be displayed', async () => {
+	// 		await UofC.waitForObjectLoad('.layout-section:nth-child(4) .new-block>a', waitLong * 3, 1000, true);
+	// 	});
+	//
+	// 	UofC.validateDisplayedTextEquals('.layout-section:nth-child(4) .new-block>a', 'Add Block');
+	//
+	// 	it('wait for the 2nd Add Layout link to be displayed', async () => {
+	// 		await UofC.waitForObjectLoad('.new-section:nth-child(5)>a', waitLong * 3, 1000, true);
+	// 	});
+	// 	UofC.validateDisplayedTextEquals('.new-section:nth-child(5)>a', 'Add Layout');
+	// });
+	describe('check the 2nd Add Block and 3rd Add Layout buttons are displayed', () => {
+		UofC.validateDisplayedTextEquals('.layout-section:nth-child(4) .new-block>a', 'Add Block');   //div[data-layout-delta="1"] .new-block>a
+		UofC.validateDisplayedTextEquals('.new-section:nth-child(5)>a', 'Add Layout');
 	});
 	
-	UofC.addNewBlock('2'                                                                //addBlockBtnNr
-	  , 'UCalgary'                                                                      //blockCategory
-	  , 'details.UCalgary-blocks a[href*=ucws_accordion]'                               //blockExpectedCssLocator
-	  , 'details.UCalgary-blocks:nth-child(23)>ul'                                      //categoryLinkGroupLocator
-	  , 'Add Accordion'                                                                 //categoryLinkNameToClick
-	  , 'details[id*=edit-settings-teams]'                                              //categoryExpectedCssLocator
-	  , null                                                                            //reusableCheckbox
-	  , null                                                                            //reusableBlockName
-	  , null                                                                            //teamsCheckBoxesToSelect
-	  , 'a[title*="Edit Accordion block"]'                                              //expectedCssLocatorAfterBlockAdded
-	);
+	const newAccordionBlockValues = new HarnessJson(dataJsonFilePath).getJsonData().addAccordionBlock;
+	UofC.addNewBlock(newAccordionBlockValues);
 	
 	describe('save page layout', () => {
-		//click Save Page Layout
 		UofC.clickLayoutActionButtons('save', 'Close Status Message\nStatus message\nThe layout override has been saved.');
 	});
 	
 	describe('edit this block on accordion', () => {
 		it('click the edit this block button', async () => {
-			const editBlockElements = await UofC.findElementsByCSS('a[title*="Edit Accordion block"]'); //.accordion .block-editing>a
+			const editBlockElements = await UofC.findElementsByCSS('div.block a[title*="Edit Accordion block"]');
 			if (editBlockElements.length > 0) {
 				//bring the button into the view
-				await driver.executeScript('arguments[0].scrollIntoView({block: "end", inline: "nearest"});', editBlockElements[0]);
+				await driver.executeScript('arguments[0].scrollIntoView({block: "center", inline: "center"});', editBlockElements[0]);
 				editBlockElements[0].click();
 				await UofC.waitForPageLoad();
 				await UofC.waitForObjectLoad('.ui-dialog', waitLong * 5, 1000, true);

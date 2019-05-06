@@ -22,52 +22,55 @@ describe('appName: ' + harness.getCommandLineArgs().appName + ' (user: ' + harne
 	});
 	
 	after(async () => {
-		await harnessObj.quit();
+		await harnessObj.quit(this);
 	});
 	
 	afterEach(async () => {
 		await UofC.afterEachTest(this.ctx.currentTest);
-		await UofC.afterEachTest(this.ctx.currentTest.title);
-		await UofC.afterEachTest(this.ctx.currentTest.state);
 	});
 	
-	describe('validate the "content" menu exists when contentadmin user is logged in', () => {
-		//1. Content menu exists
-		UofC.validateDisplayedText('a[class*=admin-content]', 'Content');
+	//1. check Content menu and it's submenus
+	describe('the "content" menu and it\'s submenus exist when contentadmin user is logged in', () => {
+		//1.1. check 'Content' menu exists and has the correct text
+		UofC.validateDisplayedTextEquals('a[class*=admin-content]', 'Content');
 		//mouse over the Content menu
 		it('mouse over the "content" menu', async () => {
 			await UofC.mouseHover('a[class*=admin-content]');
 		});
-		it('wait for the submenu to become displayed', async () => {
+		//1.2. check 'Add content' submenu exists (Content menu) and has the correct text
+		it('the "add content" submenu is displayed', async () => {
 			await UofC.waitForObjectLoad('.hover-intent a[class*=add-content]', waitLong, 500, true);
 		});
-		//check Structure's sub-menus
-		UofC.validateDisplayedText('.hover-intent a[class*=add-content]', 'Add content');
+		//1.3. check 'Add content' sub-menu's text
+		UofC.validateDisplayedTextEquals('.hover-intent a[class*=add-content]', 'Add content');
 	});
 	
-	describe('validate the "structure" menu and sub-menus when contentadmin user is logged in', () => {
-		//2. Structure menu exists
-		UofC.validateDisplayedText('a[class*=admin-structure]', 'Structure');
+	//1. check Structure menu and it's submenus
+	describe('the "structure" menu and it\'s submenus exist when contentadmin user is logged in', () => {
+		//2.1. Structure menu exists
+		UofC.validateDisplayedTextEquals('a[class*=admin-structure]', 'Structure');
 		//mouse over the Structure menu
 		it('mouse over the "structure" menu', async () => {
 			await UofC.mouseHover('a[class*=admin-structure]');
 		});
-		it('wait for the submenu to become displayed', async () => {
+		//1.2. check 'Add content' submenu exists (Content menu) and has the correct text
+		it('the "menus" submenu is displayed', async () => {
 			await UofC.waitForObjectLoad('.hover-intent a[class*=menu-collection]', waitLong, 500, true);
 		});
-		//check Structure's sub-menus
-		UofC.validateDisplayedText('.hover-intent a[class*=menu-collection]', 'Menus');
-		UofC.validateDisplayedText('.hover-intent a[class*=taxonomy]:not([class*=tags])', 'Taxonomy');
-		UofC.validateDisplayedText('.hover-intent a[class*=view-collection]', 'Views');
+		//check Structure's submenus exist: Menus / Taxonomy / Views / Menus
+		UofC.validateDisplayedTextEquals('.hover-intent a[class*=menu-collection]', 'Menus');
+		UofC.validateDisplayedTextEquals('.hover-intent a[class*=taxonomy]:not([class*=tags])', 'Taxonomy');
+		UofC.validateDisplayedTextEquals('.hover-intent a[class*=view-collection]', 'Views');
+		UofC.validateDisplayedTextEquals('.hover-intent a[class*=webform]', 'Webforms');
 	});
 	
-	describe('validate the "configuration" menu exists when contentadmin user is logged in', () => {
+	describe('the "configuration" menu exists when contentadmin user is logged in', () => {
 		//3. Content menu exists
-		UofC.validateDisplayedText('a[class*=admin-config]:not([class*=config-])', 'Configuration');
+		UofC.validateDisplayedTextEquals('a[class*=admin-config]:not([class*=config-])', 'Configuration');
 	});
 	
-	describe('validate the "teams" menu exists when contentadmin user is logged in', () => {
+	describe('the "teams" menu exists when contentadmin user is logged in', () => {
 		//4. Content menu exists
-		UofC.validateDisplayedText('a[class*=teams-microsession-index]', 'Teams');
+		UofC.validateDisplayedTextEquals('a[class*=teams-microsession-index]', 'Teams Session');
 	});
 });

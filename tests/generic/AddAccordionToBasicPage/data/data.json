@@ -1,14 +1,27 @@
 {
   "createBasicPage": {
     "pageTitle": "Page Title",
+    "isPublished": false,
     "verifyPage": true
   },
-  "editTextHeroCTA": {
-    "headingValue":  "Text Hero CTA Block Heading",
-    "descriptionValue":  "Text Hero CTA Block Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+  "addAccordionBlock": {
+    "addBlockBtnNr": "2",
+    "blockCategory": "UCalgary",
+    "blockExpectedCssLocator": "details[open=open].UCalgary-blocks li>a[href*=ucws_accordion]",
+    "categoryLinkGroupLocator": "details[open=open].UCalgary-blocks:nth-child(21)>ul",
+    "categoryLinkNameToClick": "Add Accordion",
+    "categoryExpectedCssLocator": "details[id*=edit-settings-teams]",
+    "isReusable": null,
+    "reusableBlockName": null,
+    "teamsCheckBoxesToSelect": null,
+    "expectedCssLocatorAfterBlockAdded": ".draggable:nth-child(1) a[title*=\"Edit Accordion block\"]"
+  },
+  "editAccordion": {
+    "headingValue": "Accordion Block Heading",
+    "descriptionValue": "Accordion Block Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
     "ctaButtons": {
-      "Url1": "https://www.google.ca/",
-      "btnLabel1": "Text Hero CTA Btn Label 1"
+      "url1": "https://www.google.ca/",
+      "btnLabel1": "Accordion Btn#1 Label"
     }
   }
 }

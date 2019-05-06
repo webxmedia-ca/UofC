@@ -10,16 +10,10 @@ const harness = require('../../../lib/harness');
 const HarnessJson = require('../../../lib/harness-json');
 const UofC = require('../../../lib/UofCApps');
 
-//temp - so I can use driver. actions in the test here
-// UcLaw.init(harness.init, waitShort, waitLong);
-// let driver = harness.driver;
-//temp - so I can use driver. actions
-
 describe('appName: ' + harness.getCommandLineArgs().appName + ' (user: ' + harness.getCommandLineArgs().role +
   ') | env: ' + harness.getCommandLineArgs().env + ' | BrowserStack: ' + harness.getCommandLineArgs().browserStack, function () {
 	
 	let harnessObj = null;
-	// console.log('this.title: ' + this.title + '\n'); //not returning the suite title - which I want
 	
 	before(async () => {
 		harnessObj = await harness.init();
@@ -29,45 +23,30 @@ describe('appName: ' + harness.getCommandLineArgs().appName + ' (user: ' + harne
 	});
 	
 	after(async () => {
-		await harnessObj.quit();
+		await harnessObj.quit(this);
 	});
 	
 	afterEach(async () => {
 		await UofC.afterEachTest(this.ctx.currentTest);
-		await UofC.afterEachTest(this.ctx.currentTest.title);
-		await UofC.afterEachTest(this.ctx.currentTest.state);
 	});
 	
 	//reading json data files and preparing the required variables for later usage
 	const dataJsonFilePath = require('path').join(__dirname, '/data/data.json');
 	const newPageValues = new HarnessJson(dataJsonFilePath).getJsonData().createBasicPage;
-	const editHeroCTAValues = new HarnessJson(dataJsonFilePath).getJsonData().editHeroCTA;
-	const attachmentJsonFilePath = require('path').join(__dirname, '/attachments/' + editHeroCTAValues.backgroundImage);
-	console.log('dataJsonFilePath      :' + dataJsonFilePath);
-	console.log('attachmentJsonFilePath:' + attachmentJsonFilePath);
-	
 	UofC.createBasicPage(newPageValues);
 	
 	describe('click Layout tab', () => {
 		UofC.clickOnTabByText('Layout', '#layout-builder');
 	});
 	
-	UofC.addNewBlock('1'
-	  , 'UCalgary'
-	  , 'details.UCalgary-blocks li>a[href*=ucws_hero_cta]'
-	  , 'details.UCalgary-blocks:nth-child(23)>ul'  //.block-categories details.UCalgary-blocks>ul:nth-child(2) -- returns 2 items
-	  , 'Add Hero CTA'
-	  , 'details[id*=edit-settings-teams]'
-	  , null
-	  , null
-	  , null
-	  , 'a[title*="Edit Hero Call to Action block"]'   //#layout-builder .layout.hero
-	);
+	const newHeroCtaBlockValues = new HarnessJson(dataJsonFilePath).getJsonData().addHeroCTABlock;
+	UofC.addNewBlock(newHeroCtaBlockValues);
 	
 	describe('save page layout', () => {
-		//click Save Page Layout
 		UofC.clickLayoutActionButtons('save', 'Close Status Message\nStatus message\nThe layout override has been saved.');
 	});
 	
-	UofC.editHeroCTABlock(editHeroCTAValues, attachmentJsonFilePath);
+	const editHeroCTAValues = new HarnessJson(dataJsonFilePath).getJsonData().editHeroCTA;
+	const heroCtaAttachmentFilePath = require('path').join(__dirname, '/attachments/' + (editHeroCTAValues.imageUpload.backgroundImage));
+	UofC.editHeroCtaBlock(editHeroCTAValues, heroCtaAttachmentFilePath);
 });

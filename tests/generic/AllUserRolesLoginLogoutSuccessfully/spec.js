@@ -28,13 +28,11 @@ describe('appName: ' + harness.getCommandLineArgs().appName + ' (user: ' + harne
 	});
 	
 	after(async () => {
-		await harnessObj.quit();
+		await harnessObj.quit(this);
 	});
 	
 	afterEach(async () => {
 		await UofC.afterEachTest(this.ctx.currentTest);
-		await UofC.afterEachTest(this.ctx.currentTest.title);
-		await UofC.afterEachTest(this.ctx.currentTest.state);
 	});
 	
 	//reading json data files and preparing the required variables for later usage
@@ -64,7 +62,7 @@ describe('appName: ' + harness.getCommandLineArgs().appName + ' (user: ' + harne
 			await UofC.waitForObjectLoad('a[title*=Welcome]', waitShort, 500, true);
 		});
 		
-		UofC.validateDisplayedText('a[title*=Welcome]', 'Welcome to the University Web System');
+		UofC.validateDisplayedTextEquals('a[title*=Welcome]', 'Welcome to the University Web System');
 		
 		it('choose local login tab', async () => {
 			// select the 'Local login' option
@@ -117,7 +115,7 @@ describe('appName: ' + harness.getCommandLineArgs().appName + ' (user: ' + harne
 			await UofC.waitForObjectLoad('a[title*=Welcome]', waitShort, 500, true);
 		});
 		
-		UofC.validateDisplayedText('a[title*=Welcome]', 'Welcome to the University Web System');
+		UofC.validateDisplayedTextEquals('a[title*=Welcome]', 'Welcome to the University Web System');
 		
 		it('choose local login tab', async () => {
 			// select the 'Local login' option
@@ -170,7 +168,7 @@ describe('appName: ' + harness.getCommandLineArgs().appName + ' (user: ' + harne
 			await UofC.waitForObjectLoad('a[title*=Welcome]', waitShort, 500, true);
 		});
 		
-		UofC.validateDisplayedText('a[title*=Welcome]', 'Welcome to the University Web System');
+		UofC.validateDisplayedTextEquals('a[title*=Welcome]', 'Welcome to the University Web System');
 		
 		it('choose local login tab', async () => {
 			// select the 'Local login' option

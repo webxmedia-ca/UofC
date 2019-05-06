@@ -1,24 +1,30 @@
-# Automated UofC Tests
-this repo defines the automated tests suites for UofC. The git url is: https://github.com/webxmedia-ca/UofC.git
+# University of Calgary's Automated Tests
+This repo defines the automated tests suites for UofC. The git url is:
+https://github.com/webxmedia-ca/UofC
 
 
 # Dependencies
 #### Packages installations
-Run `npm install` to install the packages. Optionally, you can run `npm update` to update your npm packages if required.
+Run `npm install` to install the packages (assuming the `package.json` exists).
+
+Optionally, you can run `npm update` to update your npm packages if required.
 
 # Running the scripts
 - the tests can be run by using an `npm run` command within the scripts section of [package.json](./package.json)
-- the usage is `npm run <script name> -- --env=xxx` where xxx can be dev, tst, preprd or prd.
+- the usage is `npm run <script name> -- --env=### --appName=*** --browserStack=????`
+  - where `###` can be `dev`, `tst`, `preprd` or `prd`
+  - where `***` can be `ucLaw` or something else available within the `*.config.json` file > `appsUrls` section
+  - where `###` can be `true` or `false`
 
 For e.g. to run the 'create pages' script in TST we'd use next:
 - to run the test locally in chrome:
+- `npm run testName -- --env=tst --appName=ucLaw --browserStack=false`
   - `npm run testName -- --env=tst --appName=ucLaw --browserClient=chrome --browserStack=false`
-  - `npm run testName -- --env=tst --appName=ucLaw --browserStack=false`
 - to run the test on BrowserStack using the `*.config.json` file's `browserStack` parameters as environment's settings:
   - `npm run generic:ValidateInternalMenuAsSiteAdmin -- --env=tst --appName=ucLaw --browserStack=true`
   - `npm run testName -- --env=tst --appName=ucLaw --browserStack=true --browserStackArgs=Windows,7,Chrome,70.0,1024x768`
 
-#### The command line arguments:
+#### Defining the command line arguments:
 - `npm run testName`
   - usage: _`npm run generic:ValidateInternalMenuAsSiteAdmin`_
   - required, this is the npm command to run the test, required the test name as well 
@@ -55,7 +61,7 @@ For e.g. to run the 'create pages' script in TST we'd use next:
 - `--username` & `--password`
   - used if you want to run as a non-default user
 
-######NOTE: for more details about the command line arguments please see `package.json` ("scripts": section) & `harness.js` files
+######NOTES: for more details about the command line arguments please see `package.json` ("scripts": section) & `harness.js` files
 
 # Grunt
 There are 3 grunt tasks in this repo:

@@ -3,12 +3,24 @@
     "pageTitle": "Page Title",
     "verifyPage": true
   },
+  "addTextHeroCTABlock": {
+    "addBlockBtnNr": "1",
+    "blockCategory": "UCalgary",
+    "blockExpectedCssLocator": "details[open=open].UCalgary-blocks li>a[href*=ucws_text_hero_cta]",
+    "categoryLinkGroupLocator": "details[open=open].UCalgary-blocks:nth-child(21)>ul",
+    "categoryLinkNameToClick": "Add Text Hero CTA",
+    "categoryExpectedCssLocator": "details[id*=edit-settings-teams]",
+    "isReusable": null,
+    "reusableBlockName": null,
+    "teamsCheckBoxesToSelect": null,
+    "expectedCssLocatorAfterBlockAdded": "a[title*=\"Edit Text Hero Call to Action block\"]"
+  },
   "editTextHeroCTA": {
-    "headingValue":  "Text Hero CTA Block Heading",
-    "descriptionValue":  "Text Hero CTA Block Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+    "headingValue": "Text Hero CTA Block Heading",
+    "descriptionValue": "Text Hero CTA Block Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
     "ctaButtons": {
-      "Url1": "https://www.google.ca/",
-      "btnLabel1": "Text Hero CTA Btn Label 1"
+      "url1": "https://www.google.ca",
+      "btnLabel1": "Text Hero CTA Btn#1 Label#1"
     }
   }
 }

@@ -1,0 +1,34 @@
+{
+	"createBasicPage": {
+		"pageTitle": "Page Title",
+		"isPublished": false,
+		"verifyPage": true
+	},
+	"addSidekickBlock": {
+		"addBlockBtnNr": "2",
+		"blockCategory": "UCalgary",
+		"blockExpectedCssLocator": "details[open=open].UCalgary-blocks li>a[href*=ucws_sidekick]",
+		"categoryLinkGroupLocator": "details[open=open].UCalgary-blocks:nth-child(21)>ul",
+		"categoryLinkNameToClick": "Add Sidekick CTA",
+		"categoryExpectedCssLocator": "details[id*=edit-settings-teams]",
+		"isReusable": null,
+		"reusableBlockName": null,
+		"teamsCheckBoxesToSelect": null,
+		"expectedCssLocatorAfterBlockAdded": ".draggable:nth-child(3) a[title=\"Edit Sidekick Call to Action block\"]"
+	},
+	"editSideKick": {
+		"nrSideKickBlockToEdit": "1",
+		"headingValue": "Sidekick CTA Block #1 Heading",
+		"descriptionValue": "Sidekick CTA Block #1 Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+		"textPosition": "Right",
+		"imageUpload": {
+			"backgroundImage": "SidekickCTATestImage.jpg",
+			"imageAltText": "Sidekick CTA Image Alt Text"
+		},
+		"bgColourItemNr": 1,
+		"ctaButtons": {
+			"url1": "https://www.google.ca",
+			"btnLabel1": "Sidekick Block#1 Btn#1 Label"
+		}
+	}
+}

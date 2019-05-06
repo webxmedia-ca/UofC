@@ -1,0 +1,33 @@
+{
+	"createBasicPage": {
+		"pageTitle": "Page Title",
+		"isPublished": false,
+		"verifyPage": true
+	},
+	"addImageBlock": {
+		"addBlockBtnNr": "2",
+		"blockCategory": "UCalgary",
+		"blockExpectedCssLocator": "details[open=open].UCalgary-blocks li>a[href*=ucws_image]:not([href*=\"image_\"])",
+		"categoryLinkGroupLocator": "details[open=open].UCalgary-blocks:nth-child(21)>ul",
+		"categoryLinkNameToClick": "Add Image",
+		"categoryExpectedCssLocator": "details[id*=edit-settings-teams]",
+		"isReusable": null,
+		"reusableBlockName": null,
+		"teamsCheckBoxesToSelect": null,
+		"expectedCssLocatorAfterBlockAdded": ".draggable:nth-child(1) a[title=\"Edit Image block\"]"
+	},
+	"editImage": {
+		"nrImageBlockToEdit": "1",
+		"headingValue": "Image Block#1 Heading",
+		"imageUpload": {
+			"backgroundImage": "ImageBlockTestImage.jpg",
+			"imageAltText": "Image Block#1 Alt Text",
+			"imageTitle": "Image Block#1 Title",
+			"cropImage": "Desktop"
+		},
+		"captionForImage": "Image Block#1: Caption for image - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam ###",
+		"photographerCredit": "Image Block#1 Photographer Credit",
+		"imageLink": "https://www.google.ca",
+		"roundedImageCorners": false
+	}
+}

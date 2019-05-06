@@ -1,0 +1,65 @@
+{
+	"createBasicPage": {
+		"pageTitle": "Page Title",
+		"isPublished": false,
+		"verifyPage": true
+	},
+	"addBanner1Block": {
+		"addBlockBtnNr": "2",
+		"blockCategory": "UCalgary",
+		"blockExpectedCssLocator": "details[open=open].UCalgary-blocks li>a[href*=ucws_banner]",
+		"categoryLinkGroupLocator": "details[open=open].UCalgary-blocks:nth-child(21)>ul",
+		"categoryLinkNameToClick": "Add Banner",
+		"categoryExpectedCssLocator": "details[id*=edit-settings-teams]",
+		"isReusable": null,
+		"reusableBlockName": null,
+		"teamsCheckBoxesToSelect": null,
+		"expectedCssLocatorAfterBlockAdded": ".draggable:nth-child(1) a[title=\"Edit Banner block\"]"
+	},
+	"addBanner2Block": {
+		"addBlockBtnNr": "2",
+		"blockCategory": "UCalgary",
+		"blockExpectedCssLocator": "details[open=open].UCalgary-blocks li>a[href*=ucws_banner]",
+		"categoryLinkGroupLocator": "details[open=open].UCalgary-blocks:nth-child(21)>ul",
+		"categoryLinkNameToClick": "Add Banner",
+		"categoryExpectedCssLocator": "details[id*=edit-settings-teams]",
+		"isReusable": null,
+		"reusableBlockName": null,
+		"teamsCheckBoxesToSelect": null,
+		"expectedCssLocatorAfterBlockAdded": ".draggable:nth-child(2) a[title=\"Edit Banner block\"]"
+	},
+	"editBanner1": {
+		"nrBannerBlockToEdit": "1",
+		"headingValue": "Banner Block #1 Heading - Image Background",
+		"descriptionValue": "Banner Block #1 Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+		"displayStyle": "Background Image",
+		"textAlignment": "Left",
+		"textPosition": "Middle Left",
+		"imageUpload": {
+			"backgroundImage": "BannerBlockImage.png",
+			"imageAltText": "Banner #1 Image Alt Text",
+			"bgImageStyle": "Tall"
+		},
+		"overlaidTextColour": "Light",
+		"doNotApplyGradient": false,
+		"ctaButtons": {
+			"url1": "https://www.google.ca",
+			"btnLabel1": "Banner#1 Btn#1 Label"
+		}
+	},
+	"editBanner2": {
+		"nrBannerBlockToEdit": "2",
+		"headingValue": "Banner Block #2 Heading - Colour Background",
+		"descriptionValue": "Banner Block #2 Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+		"displayStyle": "Background Colour",
+		"textAlignment": "Center",
+		"bgColourItemNr": 1,
+		"roundedCorners": "Not Rounded",
+		"overlaidTextColour": "Light",
+		"doNotApplyGradient": false,
+		"ctaButtons": {
+			"url1": "https://www.bing.com",
+			"btnLabel1": "Banner#2 Btn#1 Label"
+		}
+	}
+}

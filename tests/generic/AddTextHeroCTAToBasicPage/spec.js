@@ -23,42 +23,29 @@ describe('appName: ' + harness.getCommandLineArgs().appName + ' (user: ' + harne
 	});
 	
 	after(async () => {
-		await harnessObj.quit();
+		await harnessObj.quit(this);
 	});
 	
 	afterEach(async () => {
 		await UofC.afterEachTest(this.ctx.currentTest);
-		await UofC.afterEachTest(this.ctx.currentTest.title);
-		await UofC.afterEachTest(this.ctx.currentTest.state);
 	});
 	
 	//reading json data files and preparing the required variables for later usage
 	const dataJsonFilePath = require('path').join(__dirname, '/data/data.json');
 	const newPageValues = new HarnessJson(dataJsonFilePath).getJsonData().createBasicPage;
-	const editTextHeroCTAValues = new HarnessJson(dataJsonFilePath).getJsonData().editTextHeroCTA;
-	
-	
 	UofC.createBasicPage(newPageValues);
 	
 	describe('click Layout tab', () => {
 		UofC.clickOnTabByText('Layout', '#layout-builder');
 	});
 	
-	UofC.addNewBlock('1'
-	  , 'UCalgary'
-	  , 'details.UCalgary-blocks li>a[href*=ucws_text_hero_cta]'
-	  , 'details.UCalgary-blocks:nth-child(23)>ul'
-	  , 'Add Text Hero CTA'
-	  , 'details[id*=edit-settings-teams]'
-	  , null
-	  , null
-	  , null
-	  , 'a[title*="Edit Text Hero Call to Action block"]'   //was: .layout-blocks-ucws-text-hero-cta
-	);
+	const newTextHeroCtaBlockValues = new HarnessJson(dataJsonFilePath).getJsonData().addTextHeroCTABlock;
+	UofC.addNewBlock(newTextHeroCtaBlockValues);
 	
 	describe('save page layout', () => {
 		UofC.clickLayoutActionButtons('save', 'Close Status Message\nStatus message\nThe layout override has been saved.');
 	});
 	
+	const editTextHeroCTAValues = new HarnessJson(dataJsonFilePath).getJsonData().editTextHeroCTA;
 	UofC.editTextHeroCTABlock(editTextHeroCTAValues);
 });

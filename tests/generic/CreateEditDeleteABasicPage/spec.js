@@ -1,6 +1,6 @@
 /**
  * Created by valeriu.jecov on 26/02/2019.
- * NOTE: THIS TEST IS NOT YET DONE
+ * NOTE: THIS TEST IS ALMOST DONE - 95% - need to delete a block (build the function and add it here)
  * MANUAL TEST: UCWS-648 | https://ucalgary.atlassian.net/browse/UCWS-648
  */
 
@@ -10,17 +10,10 @@ const harness = require('../../../lib/harness');
 const HarnessJson = require('../../../lib/harness-json');
 const UofC = require('../../../lib/UofCApps');
 
-//temp - so I can use driver. actions in the test here
-// UcLaw.init(harness.init, waitShort, waitLong);
-// let driver = harness.driver;
-//temp - so I can use driver. actions
-const info = require(info);
-
 describe('appName: ' + harness.getCommandLineArgs().appName + ' (user: ' + harness.getCommandLineArgs().role +
-  ') | env: ' + harness.getCommandLineArgs().env + ' | BrowserStack: ' + harness.getCommandLineArgs().browserStack, function () {
+ ') | env: ' + harness.getCommandLineArgs().env + ' | BrowserStack: ' + harness.getCommandLineArgs().browserStack, function () {
 	
 	let harnessObj = null;
-	// console.log('this.title: ' + this.title + '\n'); //not returning the suite's title I want
 	
 	before(async () => {
 		harnessObj = await harness.init();
@@ -30,30 +23,17 @@ describe('appName: ' + harness.getCommandLineArgs().appName + ' (user: ' + harne
 	});
 	
 	after(async () => {
-		await harnessObj.quit();
+		await harnessObj.quit(this);
 	});
 	
 	afterEach(async () => {
 		await UofC.afterEachTest(this.ctx.currentTest);
-		await UofC.afterEachTest(this.ctx.currentTest.title);
-		await UofC.afterEachTest(this.ctx.currentTest.state);
 	});
 	
 	//reading json data files and preparing the required variables for later usage
 	const dataJsonFilePath = require('path').join(__dirname, '/data/data.json');
 	
-	/*
-	const editHeroCTAVals = new HarnessJson(dataJsonFilePath).getJsonData().editHeroCTA;
-	const attachmentFilePath = require('path').join(__dirname, '/attachments/' + editHeroCTAVals.backgroundImage);
-	console.log('dataJsonFilePath  : ' + dataJsonFilePath);
-	console.log('attachmentFilePath: ' + attachmentFilePath);
-	*/
-	
-	//1. Create a basic page:
-	//	Title
-	//  Published = true
-	//  click Save btn!
-	//---> Basic PageTitle # has been created
+	//1. Create a basic page ---> Basic PageTitle # has been created
 	const newPageValues = new HarnessJson(dataJsonFilePath).getJsonData().createBasicPage;
 	UofC.createBasicPage(newPageValues);
 	
@@ -63,117 +43,85 @@ describe('appName: ' + harness.getCommandLineArgs().appName + ' (user: ' + harne
 	});
 	
 	//3. click 1st Add Block btn and select *Add Hero CTA* block
-	UofC.addNewBlock('1'
-	  , 'UCalgary'
-	  , 'details.UCalgary-blocks li>a[href*=ucws_hero_cta]'
-	  , 'details.UCalgary-blocks:nth-child(23)>ul'
-	  , 'Add Hero CTA'
-	  , 'details[id*=edit-settings-teams]'
-	  , null
-	  , null
-	  , null
-	  , '#layout-builder .layout.hero'  //'.layout-blocks-ucws-hero-cta' OR a[title="Edit Hero Call to Action block"]
-	);
+	const newHeroCtaBlockValues = new HarnessJson(dataJsonFilePath).getJsonData().addHeroCTABlock;
+	UofC.addNewBlock(newHeroCtaBlockValues);
 	
 	//4. click 2nd Add Section btn and choose 'One Column' option
-	UofC.addNewSection('2', '1');
+	UofC.addNewLayout('1', '1');
 	
 	describe('check the 2nd Add Block and 3rd Add Layout buttons are displayed', () => {
-		UofC.validateDisplayedText('.layout-section:nth-child(3) .new-block>a', 'Add Block');   //div[data-layout-delta="1"] .new-block>a
-		UofC.validateDisplayedText('.new-section:nth-child(4)>a', 'Add Layout');
+		it('wait for the 2nd Add Block link to be displayed', async () => {
+			await UofC.waitForObjectLoad('.layout-section:nth-child(4) .new-block>a', waitLong * 3, 1000, true);
+		});
+		UofC.validateDisplayedTextEquals('.layout-section:nth-child(4) .new-block>a', 'Add Block');   //div[data-layout-delta="1"] .new-block>a
+		UofC.validateDisplayedTextEquals('.new-section:nth-child(5)>a', 'Add Layout');
 	});
 	
-	
 	//5. click 2nd Add Block btn and select *Add Banner* block
-	UofC.addNewBlock('2'
-	  , 'UCalgary'
-	  , 'details.UCalgary-blocks li>a[href*=ucws_banner]'
-	  , 'details.UCalgary-blocks:nth-child(23)>ul'
-	  , 'Add Banner'
-	  , 'details[id*=edit-settings-teams]'
-	  , null
-	  , null
-	  , null
-	  , '.draggable:nth-child(1) a[title="Edit Banner block"]' // , 'div:nth-child(1)>.layout-blocks-ucws-banner'
-	);
+	const newBannerBlockValues1 = new HarnessJson(dataJsonFilePath).getJsonData().addBanner1Block;
+	UofC.addNewBlock(newBannerBlockValues1);
 	
 	//6. click 2nd Add Block btn and select *Add More Information* block
-	UofC.addNewBlock('2'
-	  , 'UCalgary'
-	  , 'details.UCalgary-blocks li>a[href*=ucws_more_info]'
-	  , 'details.UCalgary-blocks:nth-child(23)>ul'
-	  , 'Add More Information'
-	  , 'details[id*=edit-settings-teams]'
-	  , null
-	  , null
-	  , null
-	  , 'div:nth-child(1) a[title="Edit More Information block"]'    // , '.layout-blocks-ucws-more-info'
-	);
+	const newMoreInfoBlockValues = new HarnessJson(dataJsonFilePath).getJsonData().addMoreInfo1Block;
+	UofC.addNewBlock(newMoreInfoBlockValues);
 	
 	//7. click 2nd Add Block btn and select *Add Sidekick CTA* block
-	UofC.addNewBlock('2'
-	  , 'UCalgary'
-	  , 'details.UCalgary-blocks li>a[href*=ucws_sidekick]'
-	  , 'details.UCalgary-blocks:nth-child(23)>ul'
-	  , 'Add Sidekick CTA'
-	  , 'details[id*=edit-settings-teams]'
-	  , null
-	  , null
-	  , null
-	  , 'div:nth-child(1) a[title="Edit Sidekick Call to Action block"]'    //, '.layout-blocks-ucws-sidekick-cta'
-	);
+	const newSidekickCTABlockValues = new HarnessJson(dataJsonFilePath).getJsonData().addSidekick1Block;
+	UofC.addNewBlock(newSidekickCTABlockValues);
 	
 	//8. click 2nd Add Block btn and select *Add Banner* block
-	UofC.addNewBlock('2'
-	  , 'UCalgary'
-	  , 'details.UCalgary-blocks li>a[href*=ucws_banner]'
-	  , 'details.UCalgary-blocks:nth-child(23)>ul'
-	  , 'Add Banner'
-	  , 'details[id*=edit-settings-teams]'
-	  , null
-	  , null
-	  , null
-	  , '.draggable:nth-child(4) a[title="Edit Banner block"]'   //, 'div:nth-child(4)>.layout-blocks-ucws-banner'
-	);
+	const newBannerBlockValues2 = new HarnessJson(dataJsonFilePath).getJsonData().addBanner2Block;
+	UofC.addNewBlock(newBannerBlockValues2);
 	
 	//9. click 2nd Add Block btn and select *Add Image with Text* block
-	UofC.addNewBlock('2'
-	  , 'UCalgary'
-	  , 'details.UCalgary-blocks li>a[href*=ucws_image_text]'
-	  , 'details.UCalgary-blocks:nth-child(23)>ul'
-	  , 'Add Image with Text'
-	  , 'details[id*=edit-settings-teams]'
-	  , null
-	  , null
-	  , null
-	  , 'div:nth-child(1) a[title="Edit Image with Text block"]'    //, '.layout-blocks-ucws-image_text'
-	  //, '.draggable:nth-child(5) a[title="Edit Image with Text block"]'   //this is good as well (another example)
-	);
+	const newImageWithTextBlockValues = new HarnessJson(dataJsonFilePath).getJsonData().addImageWithText1Block;
+	UofC.addNewBlock(newImageWithTextBlockValues);
 	
 	describe('save page layout', () => {
 		UofC.clickLayoutActionButtons('save', 'Close Status Message\nStatus message\nThe layout override has been saved.');
 	});
 	
 	const editHeroCTAValues = new HarnessJson(dataJsonFilePath).getJsonData().editHeroCTA;
-	const attachmentJsonFilePath = require('path').join(__dirname, '/attachments/' + editHeroCTAValues.backgroundImage);
-	UofC.editHeroCTABlock(editHeroCTAValues, attachmentJsonFilePath);
+	const heroCtaAttachmentFilePath = require('path').join(__dirname, '/attachments/' + editHeroCTAValues.imageUpload.backgroundImage);
+	UofC.editHeroCtaBlock(editHeroCTAValues, heroCtaAttachmentFilePath);
 	
 	const bannerBlock1Values = new HarnessJson(dataJsonFilePath).getJsonData().editBanner1;
 	UofC.editBannerBlock(bannerBlock1Values);
 	
-	describe('wait', () => {
-		it('wait', async () => {
-			console.log('wait');
-			info('some info');
-		});
-	});
-	
 	const moreInfoBlockValues = new HarnessJson(dataJsonFilePath).getJsonData().editMoreInfo;
 	UofC.editMoreInfoBlock(moreInfoBlockValues);
 	
-	describe('wait', () => {
-		it('wait', async () => {
-			console.log('wait');
-		});
+	const sideKickBlockValues = new HarnessJson(dataJsonFilePath).getJsonData().editSideKick;
+	const sideKickAttachmentFilePath = require('path').join(__dirname, '/attachments/' + sideKickBlockValues.imageUpload.backgroundImage);
+	UofC.editSideKickBlock(sideKickBlockValues, sideKickAttachmentFilePath);
+	
+	const bannerBlock2Values = new HarnessJson(dataJsonFilePath).getJsonData().editBanner2;
+	UofC.editBannerBlock(bannerBlock2Values);
+	
+	const imageWithTextBlockValues = new HarnessJson(dataJsonFilePath).getJsonData().editImageWithText;
+	const imageAttachmentFilePath = require('path').join(__dirname, '/attachments/' + imageWithTextBlockValues.imageUpload.backgroundImage);
+	UofC.editImageWithTextBlock(imageWithTextBlockValues, imageAttachmentFilePath);
+	
+	//update banner 2
+	const bannerBlock2Values2 = new HarnessJson(dataJsonFilePath).getJsonData().editBanner2SecondTime;
+	UofC.editBannerBlock(bannerBlock2Values2);
+	
+	UofC.deleteBlock('Banner', bannerBlock1Values.nrBannerBlockToEdit);
+	
+	UofC.deleteBlock('Hero', 1);
+	
+	UofC.deleteBlock('More Info', moreInfoBlockValues.nrMoreInfoBlockToEdit);
+	
+	UofC.deleteBlock('Sidekick', sideKickBlockValues.nrSideKickBlockToEdit);
+	
+	//this is 1 because the 1st one was already deleted above and now the 2nd became the 1st so there is only 1 banner now
+	UofC.deleteBlock('Banner', 1);
+	
+	UofC.deleteBlock('Image with Text', imageWithTextBlockValues.nrImageWithTextBlockToEdit);
+	
+	describe('save page layout', () => {
+		UofC.clickLayoutActionButtons('save', 'Close Status Message\nStatus message\nThe layout override has been saved.');
 	});
+	
+	UofC.deleteBasicPage(newPageValues.pageTitle);
 });

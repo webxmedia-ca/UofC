@@ -9,19 +9,33 @@
     },
     "verifyPage": true
   },
+  "addHeroCTABlock": {
+    "addBlockBtnNr": "1",
+    "blockCategory": "UCalgary",
+    "blockExpectedCssLocator": "details[open=open].UCalgary-blocks li>a[href*=ucws_hero_cta]",
+    "categoryLinkGroupLocator": "details[open=open].UCalgary-blocks:nth-child(21)>ul",
+    "categoryLinkNameToClick": "Add Hero CTA",
+    "categoryExpectedCssLocator": "details[id*=edit-settings-teams]",
+    "isReusable": false,
+    "reusableBlockName": null,
+    "teamsCheckBoxesToSelect": null,
+    "expectedCssLocatorAfterBlockAdded": "a[title*='Edit Hero Call to Action block']"
+  },
   "editHeroCTA": {
-    "headingValue":  "Hero CTA Block Heading",
-    "descriptionValue":  "Hero CTA Block Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+    "headingValue": "Hero CTA Block Heading",
+    "descriptionValue": "Hero CTA Block Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
     "textPosition": "Middle Left",
     "textAlignment": "Left",
     "bgColourItemNr": 7,
     "overlaidTextColour": "Light",
-    "backgroundImage": "HeroCTATestImage.jpg",
-    "imageAltText": "Hero CTA Alt Text",
+    "imageUpload": {
+      "backgroundImage": "HeroCTATestImage.jpg",
+      "imageAltText": "Hero CTA Alt Text"
+    },
     "doNotApplyGradient": false,
     "ctaButtons": {
-      "Url1": "https://www.google.ca/",
-      "btnLabel1": "Hero CTA Btn Label 1"
+      "url1": "https://www.google.ca",
+      "btnLabel1": "Hero CTA Btn#1 Label#1"
     }
   }
 }

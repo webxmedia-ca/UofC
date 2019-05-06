@@ -1,6 +1,6 @@
+\.idea
 /npm-debug.log
 /debug.log
-/.idea
 /node_modules/
 /results/*
 !/results/README.md
