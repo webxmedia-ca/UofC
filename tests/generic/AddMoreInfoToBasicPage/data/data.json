@@ -14,17 +14,15 @@
 		"isReusable": null,
 		"reusableBlockName": null,
 		"teamsCheckBoxesToSelect": null,
-		"expectedCssLocatorAfterBlockAdded": ".draggable:nth-child(2) a[title=\"Edit More Information block\"]"
+		"expectedCssLocatorAfterBlockAdded": ".draggable:nth-child(1) a[title=\"Edit More Information block\"]"
 	},
 	"editMoreInfo": {
 		"nrMoreInfoBlockToEdit": "1",
 		"headingValue": "More Info Block #1 Heading",
 		"descriptionValue": "More Info Block #1 Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-		"displayStyle": "Background Colour",
 		"bgColourItemNr": 3,
 		"addMoreInfoSections": [
 			{
-				"addedSectionNr": "1",
 				"icon": "ucws-more-info-picture",
 				"heading": "MoreInfo#1 Section#1 Heading",
 				"description": "More Info Block#2 Section#1: Description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
@@ -32,7 +30,6 @@
 				"textLinkLabel": "MoreInfo#1 Sec#1 Link"
 			},
 			{
-				"addedSectionNr": "2",
 				"icon": "ucws-more-info-agree",
 				"heading": "MoreInfo#1 Section#2 Heading",
 				"description": "More Info Block#1 Section #2: Description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
@@ -40,7 +37,6 @@
 				"textLinkLabel": "MoreInfo#1 Sec#2 Link"
 			},
 			{
-				"addedSectionNr": "3",
 				"icon": "ucws-more-info-ask",
 				"heading": "MoreInfo#1 Section#3 Heading",
 				"description": "More Info Block#1 Section #3: Description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
@@ -48,7 +44,6 @@
 				"textLinkLabel": "MoreInfo#1 Sec#3 Link"
 			},
 			{
-				"addedSectionNr": "4",
 				"icon": "ucws-more-info-bookmark",
 				"heading": "MoreInfo#1 Section#4 Heading",
 				"description": "More Info Block#1 Section #4: Description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",

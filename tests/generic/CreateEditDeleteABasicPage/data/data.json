@@ -89,8 +89,7 @@
   },
   "editBanner1": {
     "nrBannerBlockToEdit": "1",
-    "headingValue": "Banner Block #1 Heading - Default Colour",
-    "displayStyle": "Background Colour"
+    "headingValue": "Banner Block #1 Heading - Default Colour"
   },
   "editMoreInfo": {
     "nrMoreInfoBlockToEdit": "1",
@@ -137,15 +136,15 @@
     "nrBannerBlockToEdit": "2",
     "headingValue": "Banner Block #2 Heading - #CF0722 Colour",
     "descriptionValue": "Banner Block #2 Description: Lorem ipsum dolor sit amet",
-    "displayStyle": "Background Colour",
     "textAlignment": "Center",
     "textPosition": "Middle Left",
+    "displayStyle": "Background Colour",
     "bgColourItemNr": 1
   },
   "editImageWithText": {
     "nrImageWithTextBlockToEdit": "1",
     "headingValue": "Image with Text Block#1 Heading",
-    "descriptionValue": "Image with Text Block#1 Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Risus pretium quam vulputate dignissim. Id aliquet risus feugiat in ante. Magnis dis parturient montes nascetur ridiculus mus mauris. Odio morbi quis commodo odio aenean sed adipiscing diam donec. Ultrices vitae auctor eu augue ut lectus arcu bibendum. Elit ullamcorper dignissim cras tincidunt lobortis feugiat vivamus. Risus in hendrerit gravida rutrum quisque. Egestas pretium aenean pharetra magna. Varius quam quisque id diam vel quam elementum. Sit amet venenatis urna cursus eget. Ultrices vitae auctor eu augue ut. Dictum fusce ut placerat orci nulla pellentesque dignissim. Sagittis eu volutpat odio facilisis mauris sit amet massa vitae. Consequat semper viverra nam libero justo laoreet sit amet cursus. ###",
+    "descriptionValue": "Image with Text Block#1 Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam ###",
     "imageUpload": {
       "backgroundImage": "ImageWithTextBlockTestImage.png",
       "imageAltText": "Image With Text Block#1 Alt Text"

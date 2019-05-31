@@ -1,0 +1,37 @@
+{
+	"createBasicPage": {
+		"pageTitle": "Page Title",
+		"isPublished": false,
+		"verifyPage": true
+	},
+	"addTestimonialBlock": {
+		"addBlockBtnNr": "2",
+		"blockCategory": "UCalgary",
+		"blockExpectedCssLocator": "details[open=open].UCalgary-blocks li>a[href*=ucws_testimonial])",
+		"categoryLinkGroupLocator": "details[open=open].UCalgary-blocks:nth-child(21)>ul",
+		"categoryLinkNameToClick": "Add Testimonial",
+		"categoryExpectedCssLocator": "details[id*=edit-settings-teams]",
+		"isReusable": null,
+		"reusableBlockName": null,
+		"teamsCheckBoxesToSelect": null,
+		"expectedCssLocatorAfterBlockAdded": ".draggable:nth-child(1) a[title=\"Edit Testimonial block\"]"
+	},
+	"editTestimonial": {
+		"nrTestimonialBlockToEdit": "1",
+		"headingValue": "Testimonal Block#1 Heading",
+		"descriptionValue": "Testimonal Block#1 Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Risus pretium quam vulputate dignissim. Id aliquet risus feugiat in ante. Magnis dis parturient montes nascetur ridiculus mus mauris. Odio morbi quis commodo odio aenean sed adipiscing diam donec. Ultrices vitae auctor eu augue ut lectus arcu bibendum. Elit ullamcorper dignissim cras tincidunt lobortis feugiat vivamus. Risus in hendrerit gravida rutrum quisque. Egestas pretium aenean pharetra magna. Varius quam quisque id diam vel quam elementum. Sit amet venenatis urna cursus eget. Ultrices vitae auctor eu augue ut. Dictum fusce ut placerat orci nulla pellentesque dignissim. Sagittis eu volutpat odio facilisis mauris sit amet massa vitae. Consequat semper viverra nam libero justo laoreet sit amet cursus. ###",
+		
+		
+		
+		"THIS_NEEDS_TO_BE_UPDATED": "NEEDS TO BE MODIFIED BASED ON THE TESTIMONIAL FIELDS",
+		"textAlignment": "Left",
+		"numberOfColumns": "2 columns",
+		"roundedCorners": "Not Rounded",
+		"ctaButtons": {
+			"url1": "https://www.google.ca",
+			"btnLabel1": "Testimonal Block#1 Btn#1 Label",
+			"url2": "https://www.google.ca",
+			"btnLabel2": "Text Block#1 Btn#2 Label"
+		}
+	}
+}

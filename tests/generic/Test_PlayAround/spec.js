@@ -49,12 +49,12 @@ describe('appName: ' + harness.getCommandLineArgs().appName + ' (user: ' + harne
 	//4. click 1st Add Section btn and choose 'One Column' option
 	UofC.addNewLayout('1', '1');  //TODO:this will need to be updated after the missing 2nd layout issue is fixed
 	
-	describe('check the 2nd Add Block and 3rd Add Layout buttons are displayed', () => {
+	describe('check the 2nd Add Block and 2nd Add Layout buttons are displayed', () => {
 		it('wait for the 2nd Add Block link to be displayed', async () => {
-			await UofC.waitForObjectLoad('.layout-section:nth-child(4) .new-block>a', waitLong * 3, 1000, true);
+			await UofC.waitForObjectLoad('.layout-section:nth-child(3) .new-block>a', waitLong * 3, 1000, true);
 		});
-		UofC.validateDisplayedTextEquals('.layout-section:nth-child(4) .new-block>a', 'Add Block');   //div[data-layout-delta="1"] .new-block>a
-		UofC.validateDisplayedTextEquals('.new-section:nth-child(5)>a', 'Add Layout');
+		UofC.validateDisplayedTextEquals('.layout-section:nth-child(3) .new-block>a', 'Add Block');
+		UofC.validateDisplayedTextEquals('.new-section:nth-child(4)>a', 'Add Layout');
 	});
 	
 	

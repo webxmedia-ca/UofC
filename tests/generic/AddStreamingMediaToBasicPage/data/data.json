@@ -1,0 +1,38 @@
+{
+	"createBasicPage": {
+		"pageTitle": "Page Title",
+		"isPublished": false,
+		"verifyPage": true
+	},
+	"addStreamingMediaBlock": {
+		"addBlockBtnNr": "2",
+		"blockCategory": "UCalgary",
+		"blockExpectedCssLocator": "details[open=open].UCalgary-blocks li>a[href*=ucws_streaming_media]",
+		"categoryLinkGroupLocator": "details[open=open].UCalgary-blocks:nth-child(21)>ul",
+		"categoryLinkNameToClick": "Add Streaming Media",
+		"categoryExpectedCssLocator": "details[id*=edit-settings-teams]",
+		"isReusable": null,
+		"reusableBlockName": null,
+		"teamsCheckBoxesToSelect": null,
+		"expectedCssLocatorAfterBlockAdded": ".draggable:nth-child(1) a[title=\"Edit Streaming Media block\"]"
+	},
+	"editStreamingMedia": {
+		"nrStreamingMediaBlockToEdit": "1",
+		"headingValue": "Streaming Media Block #1 Heading",
+		"descriptionValue": "Streaming Media Block #1 Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+		"accessibilityText": "Streaming Media Block #1 Accessibility Text of Streaming Media Block",
+		"captionForMedia": "Streaming Media Block #1 Caption",
+		"creatorCredit": "Streaming Media Block #1 Creator Credit",
+		"mediaType": "Youtube",
+		"mediaEmbedUrl": "https://www.youtube.com/watch?v=1SqBdS0XkV4",
+		"youTubeParameters": {
+			"hideSuggestedVideos": true,
+			"doNotShowYouTubeLogo": false,
+			"useLightControlBar": false,
+			"useWhiteProgressBar": false,
+			"useIFrameAPI": false,
+			"fixOverlayProblemsInIE": true,
+			"extraCssClasses": "test-css-class"
+		}
+	}
+}

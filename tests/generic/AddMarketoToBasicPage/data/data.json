@@ -1,0 +1,35 @@
+{
+	"createBasicPage": {
+		"pageTitle": "Page Title",
+		"isPublished": false,
+		"verifyPage": true
+	},
+	"addMarketoBlock": {
+		"addBlockBtnNr": "2",
+		"blockCategory": "UCalgary",
+		"blockExpectedCssLocator": "details[open=open].UCalgary-blocks li>a[href*=ucws_marketo]",
+		"categoryLinkGroupLocator": "details[open=open].UCalgary-blocks:nth-child(21)>ul",
+		"categoryLinkNameToClick": "Add Marketo",
+		"categoryExpectedCssLocator": "details[id*=edit-settings-teams]",
+		"isReusable": null,
+		"reusableBlockName": null,
+		"teamsCheckBoxesToSelect": null,
+		"expectedCssLocatorAfterBlockAdded": ".draggable:nth-child(1) a[title=\"Edit Marketo block\"]"
+	},
+	"editMarketoFirstTime": {
+		"nrMarketoBlockToEdit": "1",
+		"headingValue": "Marketo Block #1 Heading",
+		"descriptionValue": "Marketo Block #1 Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+		"codeSnippet": "8233",
+		"imageUpload": {
+			"backgroundImage": "MaketoBlockTestImage.jpg",
+			"imageAltText": "Marketo Block#1 - Image Alt Text"
+		}
+	},
+	"editMarketoSecondTime": {
+		"nrMarketoBlockToEdit": "1",
+		"headingValue": "Marketo Block #2 Heading",
+		"descriptionValue": "Marketo Block #2 Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+		"codeSnippet": "8996"
+	}
+}

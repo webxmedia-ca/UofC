@@ -9,7 +9,7 @@
 		"blockCategory": "UCalgary",
 		"blockExpectedCssLocator": "details[open=open].UCalgary-blocks li>a[href*=ucws_checklist]",
 		"categoryLinkGroupLocator": "details[open=open].UCalgary-blocks:nth-child(21)>ul",
-		"categoryLinkNameToClick": "Add Banner",
+		"categoryLinkNameToClick": "Add Checklist",
 		"categoryExpectedCssLocator": "details[id*=edit-settings-teams]",
 		"isReusable": null,
 		"reusableBlockName": null,
@@ -20,34 +20,29 @@
 		"nrChecklistBlockToEdit": "1",
 		"headingValue": "Checklist Block #1 Heading - Colour Background",
 		"descriptionValue": "Checklist Block #1 Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-		"displayStyle": "Background Colour",
 		"bgColourItemNr": 8,
 		"accentColourItemNr": 1,
 		"roundedCorners": "Not Rounded",
 		"addChecklistItemSections": [
 			{
-				"addedSectionNr": "1",
 				"heading": "Checklist#1 Item#1 Subheading",
 				"description": "Checklist Block#1 Item#1: Description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
 				"url": "https://www.google.ca",
 				"textLinkLabel": "Checklist#1 Itm#1 Link"
 			},
 			{
-				"addedSectionNr": "2",
 				"heading": "Checklist#1 Item#2 Subheading",
 				"description": "Checklist Block#1 Item#2: Description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
 				"url": "https://www.bing.com",
 				"textLinkLabel": "Checklist#1 Itm#2 Link"
 			},
 			{
-				"addedSectionNr": "3",
 				"heading": "Checklist#1 Item#3 Subheading",
 				"description": "Checklist Block#1 Item#3: Description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
 				"url": "https://www.yahoo.com",
 				"textLinkLabel": "Checklist#1 Itm#3 Link"
 			},
 			{
-				"addedSectionNr": "4",
 				"heading": "Checklist#1 Item#4 Subheading",
 				"description": "Checklist Block#1 Item#4: Description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
 				"url": "https://www.duckduckgo.com",

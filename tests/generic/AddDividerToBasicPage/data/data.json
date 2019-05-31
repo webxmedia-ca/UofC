@@ -1,0 +1,21 @@
+{
+	"createBasicPage": {
+		"pageTitle": "Page Title",
+		"isPublished": false,
+		"verifyPage": true
+	},
+	"addDividerBlock": {
+		"addBlockBtnNr": "2",
+		"blockCategory": "UCalgary",
+		"blockExpectedCssLocator": "details[open=open].UCalgary-blocks li>a[href*=ucws_divider]",
+		"categoryLinkGroupLocator": "details[open=open].UCalgary-blocks:nth-child(21)>ul",
+		"categoryLinkNameToClick": "Add Divider",
+		"categoryExpectedCssLocator": "details[id*=edit-settings-teams]",
+		"expectedCssLocatorAfterBlockAdded": ".draggable:nth-child(1) a[title=\"Edit Divider block\"]"
+	},
+	"editDivider": {
+		"nrDividerBlockToEdit": "1",
+		"lineStyle": "Dotted",
+		"accentLineColourItemNr": 1
+	}
+}

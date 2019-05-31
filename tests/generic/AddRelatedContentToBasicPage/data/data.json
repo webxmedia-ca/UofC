@@ -1,0 +1,46 @@
+{
+	"createBasicPage": {
+		"pageTitle": "Page Title",
+		"isPublished": false,
+		"verifyPage": true
+	},
+	"addRelatedContentBlock": {
+		"addBlockBtnNr": "2",
+		"blockCategory": "UCalgary",
+		"blockExpectedCssLocator": "details[open=open].UCalgary-blocks li>a[href*=ucws_related_content]",
+		"categoryLinkGroupLocator": "details[open=open].UCalgary-blocks:nth-child(21)>ul",
+		"categoryLinkNameToClick": "Add Related Content",
+		"categoryExpectedCssLocator": "details[id*=edit-settings-teams]",
+		"isReusable": null,
+		"reusableBlockName": null,
+		"teamsCheckBoxesToSelect": null,
+		"expectedCssLocatorAfterBlockAdded": ".draggable:nth-child(1) a[title=\"Edit Related Content block\"]"
+	},
+	"editRelatedContent": {
+		"nrRelatedContentBlockToEdit": "1",
+		"addRelatedContentItems": [
+			{
+				"imageUpload": {
+					"backgroundImage": "RelatedContentBlockTestImage1.png",
+					"imageAltText": "Related Content #1 Item #1 Image Alt Text"
+				},
+				"bgColourItemNr": 1,
+				"heading": "RelatedContent#1 Item#1 Heading",
+				"description": "Related Content #1 Item#1: Description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+				"url": "https://www.google.ca",
+				"textLinkLabel": "RelatedContent#1 Item#1 Link"
+			},
+			{
+				"imageUpload": {
+					"backgroundImage": "RelatedContentBlockTestImage2.png",
+					"imageAltText": "Related Content #1 Item #2 Image Alt Text"
+				},
+				"bgColourItemNr": 3,
+				"heading": "RelatedContent#1 Item#2 Heading",
+				"description": "Related Content #1 Item#2: Description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+				"url": "https://www.bing.com",
+				"textLinkLabel": "RelatedContent#1 Item#2 Link"
+			}
+		]
+	}
+}

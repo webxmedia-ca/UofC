@@ -28,6 +28,8 @@ autoRun_Group1:
     - npm run generic:AddTextToBasicPage -- --env=tst --appName=ucLaw --browserStack=true
     - npm run generic:AddImageToBasicPage -- --env=tst --appName=ucLaw --browserStack=true
     - npm run generic:AddImageWithTextToBasicPage -- --env=tst --appName=ucLaw --browserStack=true
+    - npm run generic:AddDividerToBasicPage -- --env=tst --appName=ucLaw --browserStack=true
+    - npm run generic:AddInfoShimToBasicPage -- --env=tst --appName=ucLaw --browserStack=true
 
   when: manual
   allow_failure: false
@@ -37,7 +39,7 @@ autoRun_Group1:
 
   environment:  # not sure what the one below does - is it needed?!
     name: ${env}
-    url: https://law-tst.ucalgary.ca
+    url: https://***.ucalgary.ca
 
 #################################################################################################################
 autoRun_Group2:
@@ -52,6 +54,10 @@ autoRun_Group2:
     - npm run generic:AddChecklistToBasicPage -- --env=tst --appName=ucLaw --browserStack=true
     - npm run generic:AddMoreInfoToBasicPage -- --env=tst --appName=ucLaw --browserStack=true
     - npm run generic:AddSidekickToBasicPage -- --env=tst --appName=ucLaw --browserStack=true
+    - npm run generic:AddRelatedContentToBasicPage -- --env=tst --appName=ucLaw --browserStack=true
+    - npm run generic:AddStreamingMediaToBasicPage -- --env=tst --appName=ucLaw --browserStack=true
+    - npm run generic:AddMarketoToBasicPage -- --env=tst --appName=ucLaw --browserStack=true
+    - npm run generic:AddTestimonialToBasicPage -- --env=tst --appName=ucLaw --browserStack=true
     - npm run generic:AllUserRolesLoginLogoutSuccessfully -- --env=tst --appName=ucLaw --browserStack=true
     - npm run generic:ValidateInternalMenuAsSiteAdmin -- --env=tst --appName=ucLaw --browserStack=true
     - npm run generic:ValidateInternalMenuAsContentAdmin -- --env=tst --appName=ucLaw --browserStack=true
@@ -66,7 +72,7 @@ autoRun_Group2:
 
   environment:    # not sure what the one below does - is it needed?!
     name: ${env}
-    url: https://law-tst.ucalgary.ca
+    url: https://***.ucalgary.ca
 
 
 
@@ -140,7 +146,7 @@ CreateABasicPage:
 
   environment:    # not sure what the one below does - is it needed?!
     name: ${env}
-    url: https://law-tst.ucalgary.ca
+    url: https://***.ucalgary.ca
 
 #################################################################################################################
 CreateEditDeleteABasicPage:
@@ -158,7 +164,7 @@ CreateEditDeleteABasicPage:
 
   environment:    # not sure what the one below does - is it needed?!
     name: ${env}
-    url: https://law-tst.ucalgary.ca
+    url: https://***.ucalgary.ca
 
 #################################################################################################################
 AddHeroCTAToBasicPage:
@@ -176,7 +182,7 @@ AddHeroCTAToBasicPage:
 
   environment:    # not sure what the one below does - is it needed?!
     name: ${env}
-    url: https://law-tst.ucalgary.ca
+    url: https://***.ucalgary.ca
 
 #################################################################################################################
 AddTextHeroCTAToBasicPage:
@@ -194,7 +200,7 @@ AddTextHeroCTAToBasicPage:
 
   environment:    # not sure what the one below does - is it needed?!
     name: ${env}
-    url: https://law-tst.ucalgary.ca
+    url: https://***.ucalgary.ca
 
 #################################################################################################################
 AddAccordionToBasicPage:
@@ -212,7 +218,7 @@ AddAccordionToBasicPage:
 
   environment:    # not sure what the one below does - is it needed?!
     name: ${env}
-    url: https://law-tst.ucalgary.ca
+    url: https://***.ucalgary.ca
 
 #################################################################################################################
 AddBannerToBasicPage:
@@ -230,7 +236,7 @@ AddBannerToBasicPage:
 
   environment:    # not sure what the one below does - is it needed?!
     name: ${env}
-    url: https://law-tst.ucalgary.ca
+    url: https://***.ucalgary.ca
 
 #################################################################################################################
 AddChecklistToBasicPage:
@@ -248,7 +254,7 @@ AddChecklistToBasicPage:
 
   environment:    # not sure what the one below does - is it needed?!
     name: ${env}
-    url: https://law-tst.ucalgary.ca
+    url: https://***.ucalgary.ca
 
 #################################################################################################################
 AddMoreInfoToBasicPage:
@@ -266,7 +272,43 @@ AddMoreInfoToBasicPage:
 
   environment:    # not sure what the one below does - is it needed?!
     name: ${env}
-    url: https://law-tst.ucalgary.ca
+    url: https://***.ucalgary.ca
+
+#################################################################################################################
+AddDividerToBasicPage:
+  stage: tests_run_manual
+  script:
+    - echo "manual test run -------------------------------------------------------------------------------------"
+    - npm run generic:AddDividerToBasicPage -- --env=tst --appName=ucLaw --browserStack=true
+    - echo
+
+  when: manual
+  allow_failure: false
+
+  only:
+    - master      # the test/job will run only in master branch
+
+  environment:    # not sure what the one below does - is it needed?!
+    name: ${env}
+    url: https://***.ucalgary.ca
+
+#################################################################################################################
+AddInfoShimToBasicPage:
+  stage: tests_run_manual
+  script:
+    - echo "manual test run -------------------------------------------------------------------------------------"
+    - npm run generic:AddInfoShimToBasicPage -- --env=tst --appName=ucLaw --browserStack=true
+    - echo
+
+  when: manual
+  allow_failure: false
+
+  only:
+    - master      # the test/job will run only in master branch
+
+  environment:    # not sure what the one below does - is it needed?!
+    name: ${env}
+    url: https://***.ucalgary.ca
 
 #################################################################################################################
 AddSidekickToBasicPage:
@@ -284,7 +326,7 @@ AddSidekickToBasicPage:
 
   environment:    # not sure what the one below does - is it needed?!
     name: ${env}
-    url: https://law-tst.ucalgary.ca
+    url: https://***.ucalgary.ca
 
 #################################################################################################################
 AddTextToBasicPage:
@@ -302,7 +344,7 @@ AddTextToBasicPage:
 
   environment:    # not sure what the one below does - is it needed?!
     name: ${env}
-    url: https://law-tst.ucalgary.ca
+    url: https://***.ucalgary.ca
 
 #################################################################################################################
 AddImageToBasicPage:
@@ -320,7 +362,7 @@ AddImageToBasicPage:
 
   environment:    # not sure what the one below does - is it needed?!
     name: ${env}
-    url: https://law-tst.ucalgary.ca
+    url: https://***.ucalgary.ca
 
 #################################################################################################################
 AddImageWithTextToBasicPage:
@@ -338,7 +380,79 @@ AddImageWithTextToBasicPage:
 
   environment:    # not sure what the one below does - is it needed?!
     name: ${env}
-    url: https://law-tst.ucalgary.ca
+    url: https://***.ucalgary.ca
+
+#################################################################################################################
+AddRelatedContentToBasicPage:
+  stage: tests_run_manual
+  script:
+    - echo "manual test run -------------------------------------------------------------------------------------"
+    - npm run generic:AddRelatedContentToBasicPage -- --env=tst --appName=ucLaw --browserStack=true
+    - echo
+
+  when: manual
+  allow_failure: false
+
+  only:
+    - master      # the test/job will run only in master branch
+
+  environment:    # not sure what the one below does - is it needed?!
+    name: ${env}
+    url: https://***.ucalgary.ca
+
+#################################################################################################################
+AddStreamingMediaToBasicPage:
+  stage: tests_run_manual
+  script:
+    - echo "manual test run -------------------------------------------------------------------------------------"
+    - npm run generic:AddStreamingMediaToBasicPage -- --env=tst --appName=ucLaw --browserStack=true
+    - echo
+
+  when: manual
+  allow_failure: false
+
+  only:
+    - master      # the test/job will run only in master branch
+
+  environment:    # not sure what the one below does - is it needed?!
+    name: ${env}
+    url: https://***.ucalgary.ca
+
+#################################################################################################################
+AddMarketoToBasicPage:
+  stage: tests_run_manual
+  script:
+    - echo "manual test run -------------------------------------------------------------------------------------"
+    - npm run generic:AddMarketoToBasicPage -- --env=tst --appName=ucLaw --browserStack=true
+    - echo
+
+  when: manual
+  allow_failure: false
+
+  only:
+    - master      # the test/job will run only in master branch
+
+  environment:    # not sure what the one below does - is it needed?!
+    name: ${env}
+    url: https://***.ucalgary.ca
+
+#################################################################################################################
+AddTestimonialToBasicPage:
+  stage: tests_run_manual
+  script:
+    - echo "manual test run -------------------------------------------------------------------------------------"
+    - npm run generic:AddTestimonialToBasicPage -- --env=tst --appName=ucLaw --browserStack=true
+    - echo
+
+  when: manual
+  allow_failure: false
+
+  only:
+    - master      # the test/job will run only in master branch
+
+  environment:    # not sure what the one below does - is it needed?!
+    name: ${env}
+    url: https://***.ucalgary.ca
 
 #################################################################################################################
 AllUserRolesLoginLogoutSuccessfully:
@@ -356,7 +470,7 @@ AllUserRolesLoginLogoutSuccessfully:
 
   environment:    # not sure what the one below does - is it needed?!
     name: ${env}
-    url: https://law-tst.ucalgary.ca
+    url: https://***.ucalgary.ca
 
 #################################################################################################################
 ValidateInternalMenuAsSiteAdmin:
@@ -374,7 +488,7 @@ ValidateInternalMenuAsSiteAdmin:
 
   environment:    # not sure what the one below does - is it needed?!
     name: ${env}
-    url: https://law-tst.ucalgary.ca
+    url: https://***.ucalgary.ca
 
 #################################################################################################################
 ValidateInternalMenuAsContentAdmin:
@@ -392,7 +506,7 @@ ValidateInternalMenuAsContentAdmin:
 
   environment:    # not sure what the one below does - is it needed?!
     name: ${env}
-    url: https://law-tst.ucalgary.ca
+    url: https://***.ucalgary.ca
 
 #################################################################################################################
 ValidateInternalMenuAsContentEditor:
@@ -410,7 +524,7 @@ ValidateInternalMenuAsContentEditor:
 
   environment:    # not sure what the one below does - is it needed?!
     name: ${env}
-    url: https://law-tst.ucalgary.ca
+    url: https://***.ucalgary.ca
 
 #################################################################################################################
 

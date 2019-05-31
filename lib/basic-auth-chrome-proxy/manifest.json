@@ -1,9 +1,0 @@
-{
-  "manifest_version": 2,
-  "name": "AEP Internal Basic Auth",
-  "version": "1.0.0",
-  "permissions": ["<all_urls>", "webRequest", "webRequestBlocking"],
-  "background": {
-    "scripts": ["background.js"]
-  }
-}

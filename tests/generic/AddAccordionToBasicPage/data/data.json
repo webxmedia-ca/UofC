@@ -17,11 +17,74 @@
     "expectedCssLocatorAfterBlockAdded": ".draggable:nth-child(1) a[title*=\"Edit Accordion block\"]"
   },
   "editAccordion": {
-    "headingValue": "Accordion Block Heading",
-    "descriptionValue": "Accordion Block Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-    "ctaButtons": {
-      "url1": "https://www.google.ca/",
-      "btnLabel1": "Accordion Btn#1 Label"
-    }
+    "nrAccordionBlockToEdit": "1",
+    "headingValue": "Accordion Block #1 Heading",
+    "descriptionValue": "Accordion Block #1 Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+    "accordionContentSections": [
+      {
+        "contentHeading": "Accordion #1 Content #1 Heading",
+        "contentDescription": "Accordion #1 Content #1 Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Accordion #1 Content #1 Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+        "numberOfColumns": "1 column",
+        "accordionSections": [
+          {
+            "sectionHeading": "Accordion #1 Content #1 Section #1 Heading",
+            "sectionDescription": "Accordion #1 Content #1 Section #1 Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
+            "numberedStep": true,
+            "sectionCtaButtons": {
+              "url": "https://www.google.ca/",
+              "btnLabel": "Cont#1 Sect#1 Btn Lbl"
+            }
+          },
+          {
+            "sectionHeading": "Accordion #1 Content #1 Section #2 Heading",
+            "sectionDescription": "Accordion #1 Content #1 Section #2 Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
+            "numberedStep": true,
+            "sectionCtaButtons": {
+              "url": "https://www.bing.com/",
+              "btnLabel": "Cont#1 Sect#2 Btn Lbl"
+            }
+          },
+          {
+            "sectionHeading": "Accordion #1 Content #1 Section #3 Heading",
+            "sectionDescription": "Accordion #1 Content #1 Section #3 Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
+            "numberedStep": true,
+            "sectionCtaButtons": {
+              "url": "https://www.yahoo.com/",
+              "btnLabel": "Cont#1 Sect#3 Btn Lbl"
+            }
+          },
+          {
+            "sectionHeading": "Accordion #1 Content #1 Section #4 Heading",
+            "sectionDescription": "Accordion #1 Content #1 Section #4 Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
+            "numberedStep": true,
+            "sectionCtaButtons": {
+              "url": "https://www.duckduckgo.com/",
+              "btnLabel": "Cont#1 Sect#4 Btn Lbl"
+            }
+          }
+        ],
+        "contentCtaButtons": {
+          "url": "https://www.ucalgary.ca/",
+          "btnLabel": "Content#1 Btn Lbl"
+        },
+        "buttonAlignment": "Centre"
+      },
+      {
+        "contentHeading": "Accordion #1 Content #2 Heading",
+        "contentDescription": "Accordion #1 Content #2 Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Accordion #1 Content #1 Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+        "accordionSections": [
+          {
+            "sectionHeading": "Accordion #1 Content #2 Section #1 Heading",
+            "sectionDescription": "Accordion #1 Content #2 Section #1 Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
+            "numberedStep": false
+          },
+          {
+            "sectionHeading": "Accordion #1 Content #2 Section #2 Heading",
+            "sectionDescription": "Accordion #1 Content #2 Section #2 Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
+            "numberedStep": false
+          }
+        ]
+      }
+    ]
   }
 }

@@ -42,6 +42,8 @@
     "debug": true,
     "console": "verbose",
     "networkLogs": true,
+    "seleniumLogs": true,
+    "video": true,
     "local": true,
     "localIdentifier": "AutomationTest1"
   }

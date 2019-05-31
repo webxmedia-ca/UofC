@@ -14,12 +14,12 @@
 		"isReusable": null,
 		"reusableBlockName": null,
 		"teamsCheckBoxesToSelect": null,
-		"expectedCssLocatorAfterBlockAdded": ".draggable:nth-child(5) a[title=\"Edit Image with Text block\"]"
+		"expectedCssLocatorAfterBlockAdded": ".draggable:nth-child(1) a[title=\"Edit Image with Text block\"]"
 	},
 	"editImageWithText": {
 		"nrImageWithTextBlockToEdit": "1",
 		"headingValue": "Image with Text Block#1 Heading",
-		"descriptionValue": "Image with Text Block#1 Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Risus pretium quam vulputate dignissim. Id aliquet risus feugiat in ante. Magnis dis parturient montes nascetur ridiculus mus mauris. Odio morbi quis commodo odio aenean sed adipiscing diam donec. Ultrices vitae auctor eu augue ut lectus arcu bibendum. Elit ullamcorper dignissim cras tincidunt lobortis feugiat vivamus. Risus in hendrerit gravida rutrum quisque. Egestas pretium aenean pharetra magna. Varius quam quisque id diam vel quam elementum. Sit amet venenatis urna cursus eget. Ultrices vitae auctor eu augue ut. Dictum fusce ut placerat orci nulla pellentesque dignissim. Sagittis eu volutpat odio facilisis mauris sit amet massa vitae. Consequat semper viverra nam libero justo laoreet sit amet cursus. ###",
+		"descriptionValue": "Image with Text Block#1 Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam ###",
 		"textPosition": "Left",
 		"backgroundColor": 5,
 		"imageUpload": {

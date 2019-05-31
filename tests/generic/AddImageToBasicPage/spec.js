@@ -41,6 +41,14 @@ describe('appName: ' + harness.getCommandLineArgs().appName + ' (user: ' + harne
 	
 	UofC.addNewLayout('1', '1');
 	
+	describe('check the 2nd Add Block and 2nd Add Layout buttons are displayed', () => {
+		it('wait for the 2nd Add Block link to be displayed', async () => {
+			await UofC.waitForObjectLoad('.layout-section:nth-child(4) .new-block>a', waitLong * 3, 1000, true);
+		});
+		UofC.validateDisplayedTextEquals('.layout-section:nth-child(4) .new-block>a', 'Add Block');
+		UofC.validateDisplayedTextEquals('.new-section:nth-child(5)>a', 'Add Layout');
+	});
+	
 	const newImageBlockValues = new HarnessJson(dataJsonFilePath).getJsonData().addImageBlock;
 	UofC.addNewBlock(newImageBlockValues);
 	
@@ -48,8 +56,8 @@ describe('appName: ' + harness.getCommandLineArgs().appName + ' (user: ' + harne
 		UofC.clickLayoutActionButtons('save', 'Close Status Message\nStatus message\nThe layout override has been saved.');
 	});
 	
-	// replace with the new function when it is ready (note: it is similar to More Info)
 	const imageBlockValues = new HarnessJson(dataJsonFilePath).getJsonData().editImage;
-	const imageAttachmentFilePath = require('path').join(__dirname, '/attachments/' + (imageBlockValues.imageUpload.backgroundImage));
+	const imageAttachmentFilePath = require('path').join(__dirname, '/attachments/' +
+	 (imageBlockValues.imageUpload.backgroundImage));
 	UofC.editImageBlock(imageBlockValues, imageAttachmentFilePath);
 });

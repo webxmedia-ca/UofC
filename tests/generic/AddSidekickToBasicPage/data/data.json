@@ -14,7 +14,7 @@
 		"isReusable": null,
 		"reusableBlockName": null,
 		"teamsCheckBoxesToSelect": null,
-		"expectedCssLocatorAfterBlockAdded": ".draggable:nth-child(3) a[title=\"Edit Sidekick Call to Action block\"]"
+		"expectedCssLocatorAfterBlockAdded": ".draggable:nth-child(1) a[title=\"Edit Sidekick Call to Action block\"]"
 	},
 	"editSideKick": {
 		"nrSideKickBlockToEdit": "1",

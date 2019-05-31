@@ -41,6 +41,14 @@ describe('appName: ' + harness.getCommandLineArgs().appName + ' (user: ' + harne
 	
 	UofC.addNewLayout('1', '1');
 	
+	describe('check the 2nd Add Block and 2nd Add Layout buttons are displayed', () => {
+		it('wait for the 2nd Add Block link to be displayed', async () => {
+			await UofC.waitForObjectLoad('.layout-section:nth-child(4) .new-block>a', waitLong * 3, 1000, true);
+		});
+		UofC.validateDisplayedTextEquals('.layout-section:nth-child(4) .new-block>a', 'Add Block');
+		UofC.validateDisplayedTextEquals('.new-section:nth-child(5)>a', 'Add Layout');
+	});
+	
 	const newMoreInfoBlockValues = new HarnessJson(dataJsonFilePath).getJsonData().addMoreInfoBlock;
 	UofC.addNewBlock(newMoreInfoBlockValues);
 	

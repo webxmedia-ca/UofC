@@ -1,0 +1,25 @@
+{
+	"createBasicPage": {
+		"pageTitle": "Page Title",
+		"isPublished": false,
+		"verifyPage": true
+	},
+	"addCampusMapBlock": {
+		"addBlockBtnNr": "2",
+		"blockCategory": "UCalgary",
+		"blockExpectedCssLocator": "details[open=open].UCalgary-blocks li>a[href*=ucws_campus_map]",
+		"categoryLinkGroupLocator": "details[open=open].UCalgary-blocks:nth-child(21)>ul",
+		"categoryLinkNameToClick": "Add Campus Map",
+		"categoryExpectedCssLocator": "details[id*=edit-settings-teams]",
+		"isReusable": null,
+		"reusableBlockName": null,
+		"teamsCheckBoxesToSelect": null,
+		"expectedCssLocatorAfterBlockAdded": ".draggable:nth-child(1) a[title=\"Edit Campus Map block\"]"
+	},
+	"editCampusMap": {
+		"nrCampusMapBlockToEdit": "1",
+		"headingValue": "Campus Map Block#1 Heading",
+		"buildingNumber": "MLB",
+		"roomNumber": "352"
+	}
+}

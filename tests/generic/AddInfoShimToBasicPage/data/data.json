@@ -1,0 +1,26 @@
+{
+	"createBasicPage": {
+		"pageTitle": "Page Title",
+		"isPublished": false,
+		"verifyPage": true
+	},
+	"addInfoShimBlock": {
+		"addBlockBtnNr": "2",
+		"blockCategory": "UCalgary",
+		"blockExpectedCssLocator": "details[open=open].UCalgary-blocks li>a[href*=ucws_info_shim]",
+		"categoryLinkGroupLocator": "details[open=open].UCalgary-blocks:nth-child(21)>ul",
+		"categoryLinkNameToClick": "Add Info Shim",
+		"categoryExpectedCssLocator": "details[id*=edit-settings-teams]",
+		"expectedCssLocatorAfterBlockAdded": ".draggable:nth-child(1) a[title=\"Edit Info Shim block\"]"
+	},
+	"editInfoShim": {
+		"nrInfoShimBlockToEdit": "1",
+		"descriptionValue": "More Info Shim Block #1 Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+		"ctaButtons": {
+			"url1": "https://www.google.ca",
+			"btnLabel1": "InfoShim Block#1 Btn Label"
+		},
+		"icon": "ucws-info-shim-star",
+		"accentLineColourItemNr": 1
+	}
+}
