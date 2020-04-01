@@ -1,8 +1,9 @@
 In order to successfully run the tests you need next things configured (to be done only once):
-0. ChromeDriver files can be found here:
+NOTE: before doing this, check your actual chrome browser's version and download same version (e.g. 80.***anything**) from one of the urls below.
+1. ChromeDriver files can be found here:
  - http://chromedriver.storage.googleapis.com/index.html
 OR
  - https://chromedriver.chromium.org/downloads
 
-1. move/create a folder on your "C:/" drive named "ChromeDriver" & move the "chromedriver.exe" file into it (or just move the attached folder to "C:/"
-2. add the "C:\ChromeDriver" as a Path variable into the System Variables (not User variables)
+2. move/create a folder on your "C:/" drive named "ChromeDriver" & move the "chromedriver.exe" file into it (or just move the attached folder to "C:/"
+3. add the "C:\ChromeDriver" as a Path variable into the System Variables (not User variables)
